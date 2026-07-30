@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutUsRouteImport } from './routes/about-us'
+import { Route as BlogsRouteImport } from './routes/blogs'
+import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as MissionVisionRouteImport } from './routes/mission-vision'
+import { Route as ProgramsEnvironmentsRouteImport } from './routes/programs-environments'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +26,86 @@ const AboutUsRoute = AboutUsRouteImport.update({
   path: '/about-us',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogsRoute = BlogsRouteImport.update({
+  id: '/blogs',
+  path: '/blogs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqsRoute = FaqsRouteImport.update({
+  id: '/faqs',
+  path: '/faqs',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MissionVisionRoute = MissionVisionRouteImport.update({
   id: '/mission-vision',
   path: '/mission-vision',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProgramsEnvironmentsRoute = ProgramsEnvironmentsRouteImport.update({
+  id: '/programs-environments',
+  path: '/programs-environments',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/blogs': typeof BlogsRoute
+  '/faqs': typeof FaqsRoute
   '/mission-vision': typeof MissionVisionRoute
+  '/programs-environments': typeof ProgramsEnvironmentsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/blogs': typeof BlogsRoute
+  '/faqs': typeof FaqsRoute
   '/mission-vision': typeof MissionVisionRoute
+  '/programs-environments': typeof ProgramsEnvironmentsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/blogs': typeof BlogsRoute
+  '/faqs': typeof FaqsRoute
   '/mission-vision': typeof MissionVisionRoute
+  '/programs-environments': typeof ProgramsEnvironmentsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about-us' | '/mission-vision'
+  fullPaths:
+    | '/'
+    | '/about-us'
+    | '/blogs'
+    | '/faqs'
+    | '/mission-vision'
+    | '/programs-environments'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about-us' | '/mission-vision'
-  id: '__root__' | '/' | '/about-us' | '/mission-vision'
+  to:
+    | '/'
+    | '/about-us'
+    | '/blogs'
+    | '/faqs'
+    | '/mission-vision'
+    | '/programs-environments'
+  id:
+    | '__root__'
+    | '/'
+    | '/about-us'
+    | '/blogs'
+    | '/faqs'
+    | '/mission-vision'
+    | '/programs-environments'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutUsRoute: typeof AboutUsRoute
+  BlogsRoute: typeof BlogsRoute
+  FaqsRoute: typeof FaqsRoute
   MissionVisionRoute: typeof MissionVisionRoute
+  ProgramsEnvironmentsRoute: typeof ProgramsEnvironmentsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +124,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutUsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs': {
+      id: '/blogs'
+      path: '/blogs'
+      fullPath: '/blogs'
+      preLoaderRoute: typeof BlogsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faqs': {
+      id: '/faqs'
+      path: '/faqs'
+      fullPath: '/faqs'
+      preLoaderRoute: typeof FaqsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mission-vision': {
       id: '/mission-vision'
       path: '/mission-vision'
       fullPath: '/mission-vision'
       preLoaderRoute: typeof MissionVisionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/programs-environments': {
+      id: '/programs-environments'
+      path: '/programs-environments'
+      fullPath: '/programs-environments'
+      preLoaderRoute: typeof ProgramsEnvironmentsRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +158,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutUsRoute: AboutUsRoute,
+  BlogsRoute: BlogsRoute,
+  FaqsRoute: FaqsRoute,
   MissionVisionRoute: MissionVisionRoute,
+  ProgramsEnvironmentsRoute: ProgramsEnvironmentsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
