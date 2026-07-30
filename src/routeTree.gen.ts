@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutUsRouteImport } from './routes/about-us'
+import { Route as AdmissionsRouteImport } from './routes/admissions'
 import { Route as BlogsRouteImport } from './routes/blogs'
+import { Route as CareersRouteImport } from './routes/careers'
+import { Route as ContactUsRouteImport } from './routes/contact-us'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as MissionVisionRouteImport } from './routes/mission-vision'
 import { Route as ProgramsEnvironmentsRouteImport } from './routes/programs-environments'
@@ -26,9 +29,24 @@ const AboutUsRoute = AboutUsRouteImport.update({
   path: '/about-us',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdmissionsRoute = AdmissionsRouteImport.update({
+  id: '/admissions',
+  path: '/admissions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogsRoute = BlogsRouteImport.update({
   id: '/blogs',
   path: '/blogs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CareersRoute = CareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactUsRoute = ContactUsRouteImport.update({
+  id: '/contact-us',
+  path: '/contact-us',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqsRoute = FaqsRouteImport.update({
@@ -50,7 +68,10 @@ const ProgramsEnvironmentsRoute = ProgramsEnvironmentsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/admissions': typeof AdmissionsRoute
   '/blogs': typeof BlogsRoute
+  '/careers': typeof CareersRoute
+  '/contact-us': typeof ContactUsRoute
   '/faqs': typeof FaqsRoute
   '/mission-vision': typeof MissionVisionRoute
   '/programs-environments': typeof ProgramsEnvironmentsRoute
@@ -58,7 +79,10 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/admissions': typeof AdmissionsRoute
   '/blogs': typeof BlogsRoute
+  '/careers': typeof CareersRoute
+  '/contact-us': typeof ContactUsRoute
   '/faqs': typeof FaqsRoute
   '/mission-vision': typeof MissionVisionRoute
   '/programs-environments': typeof ProgramsEnvironmentsRoute
@@ -67,7 +91,10 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/admissions': typeof AdmissionsRoute
   '/blogs': typeof BlogsRoute
+  '/careers': typeof CareersRoute
+  '/contact-us': typeof ContactUsRoute
   '/faqs': typeof FaqsRoute
   '/mission-vision': typeof MissionVisionRoute
   '/programs-environments': typeof ProgramsEnvironmentsRoute
@@ -77,7 +104,10 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about-us'
+    | '/admissions'
     | '/blogs'
+    | '/careers'
+    | '/contact-us'
     | '/faqs'
     | '/mission-vision'
     | '/programs-environments'
@@ -85,7 +115,10 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about-us'
+    | '/admissions'
     | '/blogs'
+    | '/careers'
+    | '/contact-us'
     | '/faqs'
     | '/mission-vision'
     | '/programs-environments'
@@ -93,7 +126,10 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about-us'
+    | '/admissions'
     | '/blogs'
+    | '/careers'
+    | '/contact-us'
     | '/faqs'
     | '/mission-vision'
     | '/programs-environments'
@@ -102,7 +138,10 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutUsRoute: typeof AboutUsRoute
+  AdmissionsRoute: typeof AdmissionsRoute
   BlogsRoute: typeof BlogsRoute
+  CareersRoute: typeof CareersRoute
+  ContactUsRoute: typeof ContactUsRoute
   FaqsRoute: typeof FaqsRoute
   MissionVisionRoute: typeof MissionVisionRoute
   ProgramsEnvironmentsRoute: typeof ProgramsEnvironmentsRoute
@@ -124,11 +163,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutUsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admissions': {
+      id: '/admissions'
+      path: '/admissions'
+      fullPath: '/admissions'
+      preLoaderRoute: typeof AdmissionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blogs': {
       id: '/blogs'
       path: '/blogs'
       fullPath: '/blogs'
       preLoaderRoute: typeof BlogsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/careers': {
+      id: '/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof CareersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact-us': {
+      id: '/contact-us'
+      path: '/contact-us'
+      fullPath: '/contact-us'
+      preLoaderRoute: typeof ContactUsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faqs': {
@@ -158,7 +218,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutUsRoute: AboutUsRoute,
+  AdmissionsRoute: AdmissionsRoute,
   BlogsRoute: BlogsRoute,
+  CareersRoute: CareersRoute,
+  ContactUsRoute: ContactUsRoute,
   FaqsRoute: FaqsRoute,
   MissionVisionRoute: MissionVisionRoute,
   ProgramsEnvironmentsRoute: ProgramsEnvironmentsRoute,
@@ -166,3 +229,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
