@@ -22,13 +22,13 @@ export function SiteHeader() {
         </Link>
 
         <nav aria-label="Main" className="hidden justify-center xl:flex">
-          <ul className="flex flex-wrap items-center gap-x-9 gap-y-2">
+          <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 2xl:gap-x-9">
             {mainNav.map((item) => (
               <li key={item.to}>
                 <Link
                   to={item.to}
-                  className="nav-link text-[17px]"
-                  activeProps={{ className: "nav-link text-[17px] underline underline-offset-8" }}
+                  className="nav-link text-[15px] 2xl:text-[17px]"
+                  activeProps={{ className: "nav-link text-[15px] 2xl:text-[17px] underline underline-offset-8" }}
                   activeOptions={{ exact: item.to === "/" }}
                 >
                   {item.label}
