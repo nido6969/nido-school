@@ -45,7 +45,7 @@ export function SiteHeader() {
           aria-label="Toggle navigation menu"
           className="ml-auto rounded-md p-2 text-olive xl:hidden"
         >
-          {open ? <Menu className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
+          {open ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
         </button>
       </div>
 
