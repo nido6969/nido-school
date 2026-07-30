@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+
 import logo from "@/assets/nido-logo.png";
 import { mainNav } from "./nav-items";
 
