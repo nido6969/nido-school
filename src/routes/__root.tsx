@@ -11,6 +11,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SiteHeader } from "@/components/site/SiteHeader";
+import { SiteFooter } from "@/components/site/SiteFooter";
+import { WhatsAppFab } from "@/components/site/WhatsAppFab";
 
 function NotFoundComponent() {
   return (
@@ -77,21 +80,43 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "NIDO — A Montessori Preschool in Bowrampet, Hyderabad" },
+      {
+        name: "description",
+        content:
+          "NIDO is a Montessori preschool in Bowrampet, Hyderabad offering AMI-inspired prepared environments for children 14 months to 6 years.",
+      },
+      { property: "og:site_name", content: "NIDO Montessori Preschool" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Preschool",
+          name: "NIDO — A Montessori Preschool",
+          email: "info@nidomontessori.in",
+          telephone: "+91-9618853888",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Bowrampet",
+            addressRegion: "Hyderabad",
+            addressCountry: "IN",
+          },
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -119,8 +144,11 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <SiteHeader />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <SiteFooter />
+      <WhatsAppFab />
     </QueryClientProvider>
   );
 }
