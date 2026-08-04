@@ -18,6 +18,7 @@ import { Route as ContactUsRouteImport } from './routes/contact-us'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as MissionVisionRouteImport } from './routes/mission-vision'
 import { Route as ProgramsEnvironmentsRouteImport } from './routes/programs-environments'
+import { Route as BlogsBlogIdRouteImport } from './routes/blogs_/$blogId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -64,6 +65,11 @@ const ProgramsEnvironmentsRoute = ProgramsEnvironmentsRouteImport.update({
   path: '/programs-environments',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogsBlogIdRoute = BlogsBlogIdRouteImport.update({
+  id: '/blogs_/$blogId',
+  path: '/blogs/$blogId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/faqs': typeof FaqsRoute
   '/mission-vision': typeof MissionVisionRoute
   '/programs-environments': typeof ProgramsEnvironmentsRoute
+  '/blogs/$blogId': typeof BlogsBlogIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -86,6 +93,7 @@ export interface FileRoutesByTo {
   '/faqs': typeof FaqsRoute
   '/mission-vision': typeof MissionVisionRoute
   '/programs-environments': typeof ProgramsEnvironmentsRoute
+  '/blogs/$blogId': typeof BlogsBlogIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -98,6 +106,7 @@ export interface FileRoutesById {
   '/faqs': typeof FaqsRoute
   '/mission-vision': typeof MissionVisionRoute
   '/programs-environments': typeof ProgramsEnvironmentsRoute
+  '/blogs_/$blogId': typeof BlogsBlogIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,6 +120,7 @@ export interface FileRouteTypes {
     | '/faqs'
     | '/mission-vision'
     | '/programs-environments'
+    | '/blogs/$blogId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/faqs'
     | '/mission-vision'
     | '/programs-environments'
+    | '/blogs/$blogId'
   id:
     | '__root__'
     | '/'
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/faqs'
     | '/mission-vision'
     | '/programs-environments'
+    | '/blogs_/$blogId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -145,6 +157,7 @@ export interface RootRouteChildren {
   FaqsRoute: typeof FaqsRoute
   MissionVisionRoute: typeof MissionVisionRoute
   ProgramsEnvironmentsRoute: typeof ProgramsEnvironmentsRoute
+  BlogsBlogIdRoute: typeof BlogsBlogIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -212,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgramsEnvironmentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs_/$blogId': {
+      id: '/blogs_/$blogId'
+      path: '/blogs/$blogId'
+      fullPath: '/blogs/$blogId'
+      preLoaderRoute: typeof BlogsBlogIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -225,6 +245,7 @@ const rootRouteChildren: RootRouteChildren = {
   FaqsRoute: FaqsRoute,
   MissionVisionRoute: MissionVisionRoute,
   ProgramsEnvironmentsRoute: ProgramsEnvironmentsRoute,
+  BlogsBlogIdRoute: BlogsBlogIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
