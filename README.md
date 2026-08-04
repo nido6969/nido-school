@@ -51,8 +51,8 @@ The objective is to faithfully recreate the website, not reinterpret or redesign
 Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
+git clone https://github.com/swift08/pixel-perfect-montessori.git
+cd pixel-perfect-montessori
 npm i
 npm run dev
 ```

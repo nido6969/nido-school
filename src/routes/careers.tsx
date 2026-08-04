@@ -5,13 +5,13 @@ export const Route = createFileRoute("/careers")({
   component: CareersPage,
   head: () => ({
     meta: [
-      { title: "Careers — Work at NIDO Montessori Preschool" },
+      { title: "Careers – NIDO Montessori" },
       {
         name: "description",
         content:
           "Join the NIDO Montessori Team in Bowrampet, Hyderabad. Openings for Montessori Guides and Montessori Assistants.",
       },
-      { property: "og:title", content: "Careers — NIDO Montessori Preschool" },
+      { property: "og:title", content: "Careers – NIDO Montessori" },
       { property: "og:description", content: "Grow with a team that trusts the child." },
       { property: "og:type", content: "article" },
       { property: "og:url", content: "/careers" },
@@ -20,69 +20,75 @@ export const Route = createFileRoute("/careers")({
   }),
 });
 
-const careerPositions = [
-  {
-    title: "1. Montessori Guide",
-    requirements: [
-      "Certified Montessori qualification (0–6 preferred)",
-      "Minimum 3 years of experience in a Montessori environment",
-      "Deep respect for the child and a strong understanding of Montessori philosophy and classroom practice",
-    ],
-  },
-  {
-    title: "2. Montessori Assistant",
-    requirements: [
-      "Bachelor’s degree in any discipline",
-      "Fluent in English (spoken and written)",
-      "Minimum 5 years of experience working with young children",
-      "Warm, patient, and collaborative approach to supporting children and guides",
-    ],
-  },
-];
-
 function CareersPage() {
   return (
     <PageShell>
-      <h1 className="heading-script text-[38px] lg:text-[44px]">
-        CAREERS: Join the NIDO Montessori Team
+      <h1 className="font-body text-[#636B2F] text-[40px] sm:text-[50px] font-bold">
+        CAREERS
       </h1>
 
-      <p className="mt-6 max-w-[1000px] font-body text-[19px] leading-[1.9] text-foreground/90">
-        As we prepare to welcome young children into a thoughtfully prepared Montessori environment,
-        we are inviting passionate and committed individuals to apply for the following positions:
-      </p>
-
-      <div className="mt-10 flex flex-col gap-6">
-        {careerPositions.map((pos) => (
-          <div
-            key={pos.title}
-            className="nido-card rounded-3xl border-2 border-dashed border-[#e6d8c3] bg-[#f8f3e9]/95 p-8 shadow-sm"
-          >
-            <h2 className="font-body text-[24px] font-bold text-olive">{pos.title}</h2>
-            <ul className="mt-4 list-disc space-y-2 pl-6 font-body text-[18px] leading-[1.8] text-foreground/85">
-              {pos.requirements.map((req) => (
-                <li key={req}>{req}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
+      <div className="mt-4 font-serif text-[18px] sm:text-[20px] leading-[1.8] text-[#333] max-w-[1050px]">
+        <p className="font-bold text-[22px] text-[#2a2a2a]">
+          Join the NIDO Montessori Team
+        </p>
+        <p className="mt-2">
+          As we prepare to welcome young children into a thoughtfully prepared Montessori environment, we are inviting passionate and committed individuals to apply for the following positions:
+        </p>
       </div>
 
-      <div className="nido-card mt-10 rounded-3xl border-2 border-dashed border-olive/30 bg-white/90 p-8 shadow-sm">
-        <p className="font-body text-[19px] leading-[1.9] text-foreground/90">
+      {/* POSITION 1 */}
+      <section className="mt-8">
+        <h2 className="font-serif text-[26px] sm:text-[30px] font-bold text-[#2a2a2a]">
+          1. Montessori Guide
+        </h2>
+        <ul className="mt-4 list-disc pl-6 space-y-3 font-serif text-[18px] sm:text-[19px] leading-[1.7] text-[#333]">
+          <li>Certified Montessori qualification (0–6 preferred)</li>
+          <li>Minimum 3 years of experience in a Montessori environment</li>
+          <li>Deep respect for the child and a strong understanding of Montessori philosophy and classroom practice</li>
+        </ul>
+      </section>
+
+      {/* POSITION 2 */}
+      <section className="mt-8">
+        <h2 className="font-serif text-[26px] sm:text-[30px] font-bold text-[#2a2a2a]">
+          2. Montessori Assistant
+        </h2>
+        <ul className="mt-4 list-disc pl-6 space-y-3 font-serif text-[18px] sm:text-[19px] leading-[1.7] text-[#333]">
+          <li>Bachelor’s degree in any discipline</li>
+          <li>Fluent in English (spoken and written)</li>
+          <li>Minimum 5 years of experience working with young children</li>
+          <li>Warm, patient, and collaborative approach to supporting children and guides</li>
+        </ul>
+      </section>
+
+      {/* APPLICATION CONTACT */}
+      <div className="mt-12 font-serif text-[18px] sm:text-[20px] leading-[1.8] text-[#333] max-w-[1050px]">
+        <p className="font-bold">
           If you believe in nurturing independence, curiosity, and respect for the child, we would love to hear from you.
         </p>
-        <p className="mt-4 font-body text-[19px] font-bold text-olive">
-          Please share your resume and a brief statement of interest at:{" "}
-          <a href="tel:+919618853888" className="underline hover:text-caramel">
-            9618853888
-          </a>{" "}
-          or{" "}
-          <a href="mailto:info@nidomontessori.in" className="underline hover:text-caramel">
-            info@nidomontessori.in
-          </a>
-        </p>
+        <div className="mt-4">
+          <p className="font-bold text-[#2a2a2a]">Send Resume:</p>
+          <p className="mt-1">
+            <a
+              href="https://wa.me/9618853888"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#333] font-bold hover:text-[#636B2F] underline"
+            >
+              Phone: 9618853888
+            </a>
+          </p>
+          <p className="mt-1">
+            <a
+              href="mailto:info@nidomontessori.in"
+              className="text-[#333] font-bold hover:text-[#636B2F] underline"
+            >
+              Email: info@nidomontessori.in
+            </a>
+          </p>
+        </div>
       </div>
     </PageShell>
   );
 }
+

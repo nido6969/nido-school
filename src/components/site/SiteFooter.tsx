@@ -4,7 +4,7 @@ import { sideNav } from "./nav-items";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-cream-deep px-6 py-12 lg:px-16">
+    <footer className="relative z-10 bg-[#f3e8d8] px-6 py-12 lg:px-16 border-t-2 border-[#e8dcc2]">
       <div className="mx-auto grid max-w-[1600px] gap-8 md:grid-cols-2 lg:grid-cols-4 items-start">
         {/* Column 1: Circular Logo */}
         <div className="flex items-center justify-start">
