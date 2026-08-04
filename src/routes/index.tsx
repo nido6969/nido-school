@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { createFileRoute } from "@tanstack/react-router";
+import { Home, Sparkles, Hand } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
-import logo from "@/assets/nido-logo.png";
-import kidsCircle from "@/assets/kids-circle.png";
+import logo from "@/assets/logo.png";
+import kidsCircle from "@/assets/image.png";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -27,15 +28,15 @@ export const Route = createFileRoute("/")({
 });
 
 const blogTopics = [
-  { title: ["Prepared", "Environments"], color: "var(--sage)" },
-  { title: ["Nurturing", "Independence"], color: "var(--terracotta)" },
-  { title: ["Hands-On", "Learning"], color: "var(--sunny)" },
+  { title: ["Prepared", "Environments"], color: "var(--sage)", icon: Home },
+  { title: ["Nurturing", "Independence"], color: "var(--terracotta)", icon: Sparkles },
+  { title: ["Hands-On", "Learning"], color: "var(--sunny)", icon: Hand },
 ];
 
 function HomePage() {
   return (
     <PageShell>
-      <section className="rounded-[28px] bg-[color-mix(in_oklab,var(--cream)_70%,white)] px-6 py-10 shadow-[0_6px_24px_oklch(0_0_0/0.06)] lg:px-14 lg:py-12">
+      <section className="nido-card rounded-[28px] bg-[color-mix(in_oklab,var(--cream)_70%,white)] px-6 py-10 shadow-[0_6px_24px_oklch(0_0_0/0.06)] lg:px-14 lg:py-12">
         <div className="grid items-center gap-10 xl:grid-cols-[1.4fr_1fr]">
           <div className="text-center">
             <img
@@ -44,7 +45,7 @@ function HomePage() {
               width={816}
               height={816}
               fetchPriority="high"
-              className="mx-auto w-full max-w-[770px] object-contain"
+              className="mx-auto w-full max-w-[640px] aspect-[2.4/1] object-cover rounded-xl"
             />
             <h1 className="mt-6 font-display text-[38px] font-bold leading-tight text-foreground sm:text-[52px] lg:text-[58px]">
               Your Child's Sanctuary
@@ -74,33 +75,37 @@ function HomePage() {
           Explore our Blogs
         </h2>
         <ul className="mt-8 grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
-          {blogTopics.map((topic) => (
-            <li key={topic.title.join(" ")}>
-              <Link
-                to="/blogs"
-                className="relative grid aspect-[3/2] place-items-center rounded-[50%] px-6 text-center shadow-[0_4px_16px_oklch(0_0_0/0.08)] transition-transform hover:scale-[1.03]"
-                style={{ backgroundColor: topic.color }}
-              >
-                <span className="font-body text-[27px] font-bold leading-[1.25] text-foreground">
-                  {topic.title[0]}
-                  <br />
-                  {topic.title[1]}
-                </span>
-              </Link>
-            </li>
-          ))}
+          {blogTopics.map((topic) => {
+            const Icon = topic.icon;
+            return (
+              <li key={topic.title.join(" ")}>
+                <Link
+                  to="/blogs"
+                  className="nido-card relative grid aspect-[3/2] place-items-center rounded-[50%] px-6 text-center shadow-[0_4px_16px_oklch(0_0_0/0.08)]"
+                  style={{ backgroundColor: topic.color }}
+                >
+                  <Icon className="absolute top-6 right-8 h-6 w-6 text-foreground/60" />
+                  <span className="font-body text-[27px] font-bold leading-[1.25] text-foreground">
+                    {topic.title[0]}
+                    <br />
+                    {topic.title[1]}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </section>
 
       <section className="mt-14">
         <Link
           to="/contact-us"
-          className="block rounded-full bg-[oklch(0.68_0.17_235)] px-6 py-6 text-center font-body text-[26px] font-bold text-foreground shadow-[0_4px_14px_oklch(0_0_0/0.14)] transition-transform hover:scale-[1.01] lg:text-[34px]"
+          className="nido-card block rounded-full bg-[oklch(0.68_0.17_235)] px-6 py-6 text-center font-body text-[26px] font-bold text-foreground shadow-[0_4px_14px_oklch(0_0_0/0.14)] lg:text-[34px]"
         >
           Schedule a Visit &amp; Unlock Their Potential!
         </Link>
 
-        <div className="mt-8 grid gap-6 rounded-full bg-caramel px-8 py-6 sm:grid-cols-2">
+        <div className="nido-card mt-8 grid gap-6 rounded-full bg-caramel px-8 py-6 sm:grid-cols-2">
           <a
             href="https://facebook.com"
             target="_blank"

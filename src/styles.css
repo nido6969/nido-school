@@ -87,6 +87,10 @@
     color: var(--color-foreground);
     font-family: var(--font-body);
   }
+
+  p {
+    text-align: justify;
+  }
 }
 
 @utility font-display {
@@ -127,5 +131,13 @@
     transform: translateX(3px);
     background: white;
     box-shadow: 0 3px 10px oklch(0 0 0 / 0.12);
+  }
+}
+
+@utility nido-card {
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 300ms ease, border-color 300ms ease;
+  &:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 12px 30px oklch(0 0 0 / 0.12);
   }
 }

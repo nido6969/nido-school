@@ -7,7 +7,7 @@ export function PageShell({ children }: { children: ReactNode }) {
     <div className="relative isolate min-h-screen">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[length:100%_auto] bg-top bg-no-repeat opacity-[0.22]"
+        className="pointer-events-none fixed inset-0 -z-10 bg-cover bg-top bg-no-repeat opacity-[0.25]"
         style={{ backgroundImage: `url(${buildingBg})` }}
       />
       <div className="mx-auto flex max-w-[1800px] gap-6 px-4 pb-16 pt-6 lg:px-8">

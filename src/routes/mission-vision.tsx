@@ -27,16 +27,18 @@ export const Route = createFileRoute("/mission-vision")({
 
 const coreValues = [
   { term: "Respect", detail: "For the child, for others, for the environment." },
-  { term: "Independence", detail: "Helping the child to do it by themselves." },
-  { term: "Curiosity", detail: "Protecting and fuelling the natural desire to learn." },
-  { term: "Community", detail: "A partnership between children, guides and families." },
-  { term: "Excellence", detail: "Authentic Montessori practice, without compromise." },
+  { term: "Independence", detail: "Fostering the ability to 'do it myself.'" },
+  { term: "Curiosity", detail: "Igniting a natural desire to explore and discover." },
+  { term: "Community", detail: "Building a supportive and collaborative environment." },
+  { term: "Authenticity", detail: "Upholding the true spirit and method of Montessori education." },
 ];
 
 function MissionVisionPage() {
   return (
     <PageShell>
-      <h1 className="heading-script text-center text-[40px] lg:text-[48px]">Mission &amp; Vision</h1>
+      <h1 className="heading-script text-center text-[40px] lg:text-[48px]">
+        Mission &amp; Vision
+      </h1>
 
       <section className="mt-12 grid items-start gap-10 xl:grid-cols-2">
         <img
@@ -44,10 +46,10 @@ function MissionVisionPage() {
           alt="Children working with Montessori materials in a prepared classroom"
           width={1280}
           height={896}
-          className="w-full rounded-2xl object-cover shadow-[0_8px_26px_oklch(0_0_0/0.16)]"
+          className="nido-card w-full rounded-2xl object-cover shadow-[0_8px_26px_oklch(0_0_0/0.16)]"
         />
         <div>
-          <h2 className="font-body text-[34px] font-bold">Our Mission</h2>
+          <h2 className="font-body text-[34px] font-bold text-foreground">Our Mission</h2>
           <p className="mt-5 text-[19px] leading-[1.9]">
             With an intention to spread the light of the Montessori approach, our mission is to
             promote a self-reliant, compassionate, empathetic childhood amongst the children who
@@ -63,7 +65,7 @@ function MissionVisionPage() {
 
       <section className="mt-20 grid items-start gap-10 xl:grid-cols-2">
         <div>
-          <h2 className="font-body text-[34px] font-bold">Our Vision</h2>
+          <h2 className="font-body text-[34px] font-bold text-foreground">Our Vision</h2>
           <p className="mt-5 text-[19px] leading-[1.9]">
             We envision a community of curious, compassionate, and capable individuals who are
             prepared not just for future academic success, but for a lifetime of purposeful
@@ -78,20 +80,19 @@ function MissionVisionPage() {
           width={1280}
           height={896}
           loading="lazy"
-          className="w-full rounded-2xl object-cover shadow-[0_8px_26px_oklch(0_0_0/0.16)]"
+          className="nido-card w-full rounded-2xl object-cover shadow-[0_8px_26px_oklch(0_0_0/0.16)]"
         />
       </section>
 
-      <section className="mt-20">
-        <h2 className="heading-script text-[38px] lg:text-[44px]">Our Core Values</h2>
-        <dl className="mt-6 space-y-4">
+      <section className="nido-card mt-20 rounded-2xl bg-[#f8f3e9]/90 p-8 shadow-sm">
+        <h2 className="heading-script text-[36px] lg:text-[42px]">Our Core Values</h2>
+        <ul className="mt-6 space-y-4">
           {coreValues.map((value) => (
-            <div key={value.term} className="text-[19px] leading-[1.9]">
-              <dt className="inline font-bold">{value.term}</dt>
-              <dd className="inline">: {value.detail}</dd>
-            </div>
+            <li key={value.term} className="text-[19px] leading-[1.9]">
+              <strong className="font-bold text-foreground">• {value.term}:</strong> {value.detail}
+            </li>
           ))}
-        </dl>
+        </ul>
       </section>
     </PageShell>
   );

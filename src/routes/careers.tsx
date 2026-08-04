@@ -9,7 +9,7 @@ export const Route = createFileRoute("/careers")({
       {
         name: "description",
         content:
-          "Join NIDO Montessori Preschool in Bowrampet, Hyderabad. Openings for Montessori guides, classroom assistants and administrative roles.",
+          "Join the NIDO Montessori Team in Bowrampet, Hyderabad. Openings for Montessori Guides and Montessori Assistants.",
       },
       { property: "og:title", content: "Careers — NIDO Montessori Preschool" },
       { property: "og:description", content: "Grow with a team that trusts the child." },
@@ -20,53 +20,69 @@ export const Route = createFileRoute("/careers")({
   }),
 });
 
-const roles = [
+const careerPositions = [
   {
-    title: "Montessori Guide — Primary (2.9–6 years)",
-    detail: "AMI/AMS diploma preferred. Full-time. Bowrampet campus.",
+    title: "1. Montessori Guide",
+    requirements: [
+      "Certified Montessori qualification (0–6 preferred)",
+      "Minimum 3 years of experience in a Montessori environment",
+      "Deep respect for the child and a strong understanding of Montessori philosophy and classroom practice",
+    ],
   },
   {
-    title: "Montessori Guide — Toddler (14 months–2.9 years)",
-    detail: "Assistants to Infancy training or equivalent experience. Full-time.",
-  },
-  {
-    title: "Classroom Assistant",
-    detail: "Warm, observant and patient. Training provided in-house.",
-  },
-  {
-    title: "Front Office & Parent Relations",
-    detail: "Excellent communication and organisation. Full-time.",
+    title: "2. Montessori Assistant",
+    requirements: [
+      "Bachelor’s degree in any discipline",
+      "Fluent in English (spoken and written)",
+      "Minimum 5 years of experience working with young children",
+      "Warm, patient, and collaborative approach to supporting children and guides",
+    ],
   },
 ];
 
 function CareersPage() {
   return (
     <PageShell>
-      <h1 className="heading-script text-[40px] lg:text-[46px]">Careers</h1>
-      <p className="mt-6 max-w-[1000px] text-[19px] leading-[1.9]">
-        At NIDO we are building a team that shares one belief: trust the child. If you are a
-        Montessori practitioner — trained or aspiring — we would love to hear from you.
+      <h1 className="heading-script text-[38px] lg:text-[44px]">
+        CAREERS: Join the NIDO Montessori Team
+      </h1>
+
+      <p className="mt-6 max-w-[1000px] font-body text-[19px] leading-[1.9] text-foreground/90">
+        As we prepare to welcome young children into a thoughtfully prepared Montessori environment,
+        we are inviting passionate and committed individuals to apply for the following positions:
       </p>
 
-      <ul className="mt-12 grid gap-6 md:grid-cols-2">
-        {roles.map((role) => (
-          <li
-            key={role.title}
-            className="rounded-3xl bg-white/85 px-7 py-7 shadow-[0_5px_18px_oklch(0_0_0/0.08)]"
+      <div className="mt-10 flex flex-col gap-6">
+        {careerPositions.map((pos) => (
+          <div
+            key={pos.title}
+            className="nido-card rounded-3xl border-2 border-dashed border-[#e6d8c3] bg-[#f8f3e9]/95 p-8 shadow-sm"
           >
-            <h2 className="font-body text-[22px] font-bold text-olive">{role.title}</h2>
-            <p className="mt-3 text-[18px] leading-[1.8]">{role.detail}</p>
-          </li>
+            <h2 className="font-body text-[24px] font-bold text-olive">{pos.title}</h2>
+            <ul className="mt-4 list-disc space-y-2 pl-6 font-body text-[18px] leading-[1.8] text-foreground/85">
+              {pos.requirements.map((req) => (
+                <li key={req}>{req}</li>
+              ))}
+            </ul>
+          </div>
         ))}
-      </ul>
+      </div>
 
-      <p className="mt-10 text-[19px] leading-[1.9]">
-        Send your résumé to{" "}
-        <a href="mailto:info@nidomontessori.in" className="font-bold text-olive underline">
-          info@nidomontessori.in
-        </a>{" "}
-        with the role in the subject line.
-      </p>
+      <div className="nido-card mt-10 rounded-3xl border-2 border-dashed border-olive/30 bg-white/90 p-8 shadow-sm">
+        <p className="font-body text-[19px] leading-[1.9] text-foreground/90">
+          If you believe in nurturing independence, curiosity, and respect for the child, we would love to hear from you.
+        </p>
+        <p className="mt-4 font-body text-[19px] font-bold text-olive">
+          Please share your resume and a brief statement of interest at:{" "}
+          <a href="tel:+919618853888" className="underline hover:text-caramel">
+            9618853888
+          </a>{" "}
+          or{" "}
+          <a href="mailto:info@nidomontessori.in" className="underline hover:text-caramel">
+            info@nidomontessori.in
+          </a>
+        </p>
+      </div>
     </PageShell>
   );
 }

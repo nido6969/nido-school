@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
-import logo from "@/assets/nido-logo.png";
+import logo from "@/assets/logo.png";
 import { mainNav } from "./nav-items";
 
 export function SiteHeader() {
@@ -17,7 +17,7 @@ export function SiteHeader() {
             alt="Nido — A Montessori Preschool"
             width={816}
             height={816}
-            className="h-16 w-16 object-contain lg:h-[124px] lg:w-[124px]"
+            className="h-16 w-16 rounded-full object-cover shadow-sm lg:h-[110px] lg:w-[110px]"
           />
         </Link>
 
@@ -28,7 +28,9 @@ export function SiteHeader() {
                 <Link
                   to={item.to}
                   className="nav-link text-[15px] 2xl:text-[17px]"
-                  activeProps={{ className: "nav-link text-[15px] 2xl:text-[17px] underline underline-offset-8" }}
+                  activeProps={{
+                    className: "nav-link text-[15px] 2xl:text-[17px] underline underline-offset-8",
+                  }}
                   activeOptions={{ exact: item.to === "/" }}
                 >
                   {item.label}
@@ -50,7 +52,10 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <nav aria-label="Mobile" className="border-t border-cream-deep bg-cream px-4 pb-4 xl:hidden">
+        <nav
+          aria-label="Mobile"
+          className="border-t border-cream-deep bg-cream px-4 pb-4 xl:hidden"
+        >
           <ul className="flex flex-col gap-1 pt-2">
             {mainNav.map((item) => (
               <li key={item.to}>
