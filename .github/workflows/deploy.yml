@@ -46,8 +46,15 @@ jobs:
         if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
         run: |
           set -euo pipefail
-          if [ -z "${AMPLIFY_APP_ID}" ]; then
+          AMPLIFY_APP_ID="$(printf '%s' "${AMPLIFY_APP_ID:-}" | tr -d '\r\n[:space:]')"
+          AMPLIFY_BRANCH="$(printf '%s' "${AMPLIFY_BRANCH:-main}" | tr -d '\r\n[:space:]')"
+          if [ -z "$AMPLIFY_APP_ID" ]; then
             echo "AMPLIFY_APP_ID secret is empty."
+            exit 1
+          fi
+          if ! printf '%s' "$AMPLIFY_APP_ID" | grep -Eq '^d[a-z0-9]+$'; then
+            echo "AMPLIFY_APP_ID is not a valid Amplify app id (expected like d2ujzxvvknyigt)."
+            echo "Re-add the GitHub secret with only the id, no quotes or extra line."
             exit 1
           fi
           sudo apt-get update -y
