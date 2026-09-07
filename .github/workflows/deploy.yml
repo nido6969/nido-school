@@ -20,8 +20,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci
+      - run: |
+          node -v
+          npm -v
+          ls -la package.json package-lock.json
+      - run: npm install --no-fund --no-audit
       - run: npm run lint
       - run: npm run build
         env:
