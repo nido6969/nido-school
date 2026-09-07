@@ -28,11 +28,12 @@ jobs:
       - run: npm install --no-fund --no-audit
       - run: npm run lint
       - run: npm run build
-      - name: Confirm Nitro output
+      - run: npm run pack:amplify
+      - name: Confirm Amplify bundle
         run: |
-          ls -la
-          test -d .output
-          ls -la .output
+          test -f .amplify-hosting/deploy-manifest.json
+          test -f .amplify-hosting/compute/default/server/index.mjs
+          ls -la .amplify-hosting
 
       - name: Configure AWS credentials
         if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
@@ -59,7 +60,7 @@ jobs:
           fi
           sudo apt-get update -y
           sudo apt-get install -y zip
-          (cd .output && zip -r ../amplify-deploy.zip .)
+          (cd .amplify-hosting && zip -r ../amplify-deploy.zip .)
           CREATE=$(aws amplify create-deployment --app-id "$AMPLIFY_APP_ID" --branch-name "$AMPLIFY_BRANCH")
           JOB_ID=$(echo "$CREATE" | jq -r ".jobId")
           UPLOAD_URL=$(echo "$CREATE" | jq -r ".zipUploadUrl")

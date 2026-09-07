@@ -7,8 +7,9 @@ frontend:
     build:
       commands:
         - npm run build
+        - npm run pack:amplify
   artifacts:
-    baseDirectory: .output
+    baseDirectory: .amplify-hosting
     files:
       - "**/*"
   cache:
