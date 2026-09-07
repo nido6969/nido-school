@@ -20,10 +20,7 @@ if (existsSync(publicDir)) {
   cpSync(publicDir, join(bundleDir, "static"), { recursive: true });
 }
 
-writeFileSync(
-  join(computeDir, "package.json"),
-  `${JSON.stringify({ type: "module" }, null, 2)}\n`,
-);
+writeFileSync(join(computeDir, "package.json"), `${JSON.stringify({ type: "module" }, null, 2)}\n`);
 
 writeFileSync(
   join(computeDir, "server.js"),
