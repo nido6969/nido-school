@@ -1,0 +1,83 @@
+name: School site CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: school-site-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Lint and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+        env:
+          WORDPRESS_URL: https://www.nidomontessori.in/blog
+
+  deploy:
+    name: Deploy to AWS Amplify
+    needs: quality
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Configure AWS credentials
+        if: ${{ secrets.AWS_ACCESS_KEY_ID != '' && secrets.AMPLIFY_APP_ID != '' }}
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION != '' && vars.AWS_REGION || 'ap-south-1' }}
+
+      - name: Start Amplify job and wait until it finishes
+        if: ${{ secrets.AWS_ACCESS_KEY_ID != '' && secrets.AMPLIFY_APP_ID != '' }}
+        env:
+          AMPLIFY_APP_ID: ${{ secrets.AMPLIFY_APP_ID }}
+          AMPLIFY_BRANCH: ${{ vars.AMPLIFY_BRANCH != '' && vars.AMPLIFY_BRANCH || 'main' }}
+        run: |
+          set -euo pipefail
+          JOB_ID=$(aws amplify start-job \
+            --app-id "$AMPLIFY_APP_ID" \
+            --branch-name "$AMPLIFY_BRANCH" \
+            --job-type RELEASE \
+            --query "jobSummary.jobId" \
+            --output text)
+          echo "Started Amplify job $JOB_ID"
+          for i in $(seq 1 80); do
+            STATUS=$(aws amplify get-job \
+              --app-id "$AMPLIFY_APP_ID" \
+              --branch-name "$AMPLIFY_BRANCH" \
+              --job-id "$JOB_ID" \
+              --query "job.summary.status" \
+              --output text)
+            echo "Amplify status: $STATUS"
+            case "$STATUS" in
+              SUCCEED) echo "Amplify deploy finished successfully."; exit 0 ;;
+              FAILED|CANCELLED) echo "Amplify deploy $STATUS"; exit 1 ;;
+            esac
+            sleep 15
+          done
+          echo "Timed out waiting for Amplify job $JOB_ID"
+          exit 1
+
+      - name: AWS secrets not configured yet
+        if: ${{ secrets.AWS_ACCESS_KEY_ID == '' || secrets.AMPLIFY_APP_ID == '' }}
+        run: |
+          echo "Lint/build finished. AWS deploy was skipped."
+          echo "Add GitHub secrets: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AMPLIFY_APP_ID"
+          echo "Optional repo variable: AWS_REGION (default ap-south-1)"
+          echo "One-time AWS: Amplify → Create app → GitHub → nido6969/nido-school → branch main"
+          echo "Then copy the Amplify app id into AMPLIFY_APP_ID. The next push will wait until Amplify reports SUCCEED."

@@ -1,12 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell } from "@/components/site/PageShell";
-import { allBlogArticles, getBlogArticleById } from "@/data/blog-articles";
+import { findBlogArticle, getBlogArticles, sanitizeWpHtml } from "@/lib/wordpress";
 import { ArrowLeft, Clock, Calendar, BookOpen, ChevronRight } from "lucide-react";
 
 export const Route = createFileRoute("/blogs_/$blogId")({
-  component: SingleBlogPage,
-  head: ({ params }) => {
-    const article = getBlogArticleById(params.blogId);
+  loader: async ({ params }) => {
+    const articles = await getBlogArticles();
+    const article = findBlogArticle(articles, params.blogId);
+    const relatedArticles = articles.filter((item) => item.id !== article?.id).slice(0, 3);
+    return { article, relatedArticles };
+  },
+  head: ({ loaderData, params }) => {
+    const article = loaderData?.article;
     const title = article?.metaTitle || article?.title || "Montessori Blog";
     const description =
       article?.metaDescription ||
@@ -25,11 +30,11 @@ export const Route = createFileRoute("/blogs_/$blogId")({
       links: [{ rel: "canonical", href: `/blogs/${article?.id || params.blogId}` }],
     };
   },
+  component: SingleBlogPage,
 });
 
 function SingleBlogPage() {
-  const { blogId } = Route.useParams();
-  const article = getBlogArticleById(blogId);
+  const { article, relatedArticles } = Route.useLoaderData();
 
   if (!article) {
     return (
@@ -57,9 +62,6 @@ function SingleBlogPage() {
       </PageShell>
     );
   }
-
-  // Get 2 other articles for recommendation
-  const relatedArticles = allBlogArticles.filter((a) => a.id !== article.id).slice(0, 3);
 
   return (
     <PageShell>
@@ -156,6 +158,16 @@ function SingleBlogPage() {
                   >
                     {block.text}
                   </p>
+                );
+              }
+
+              case "html": {
+                return (
+                  <div
+                    key={idx}
+                    className="wp-content mb-5 font-serif text-[17px] sm:text-[19px] leading-[1.85] text-[#2c3026] [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:font-body [&_h2]:text-[24px] [&_h2]:font-bold [&_h2]:text-[#636B2F] [&_p]:mb-5 [&_ul]:my-5 [&_ul]:list-disc [&_ul]:pl-6 [&_a]:text-[#636B2F] [&_a]:underline"
+                    dangerouslySetInnerHTML={{ __html: sanitizeWpHtml(block.html) }}
+                  />
                 );
               }
 

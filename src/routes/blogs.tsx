@@ -1,10 +1,11 @@
 import { useState, useMemo } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell } from "@/components/site/PageShell";
-import { allBlogArticles } from "@/data/blog-articles";
+import { getBlogArticles } from "@/lib/wordpress";
 import { Clock, Calendar, Search, ArrowRight, BookOpen } from "lucide-react";
 
 export const Route = createFileRoute("/blogs")({
+  loader: () => getBlogArticles(),
   component: BlogsPage,
   head: () => ({
     meta: [
@@ -28,13 +29,14 @@ export const Route = createFileRoute("/blogs")({
 });
 
 function BlogsPage() {
+  const allBlogArticles = Route.useLoaderData();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
   const categories = useMemo(() => {
     const cats = new Set(allBlogArticles.map((a) => a.category));
     return ["All", ...Array.from(cats)];
-  }, []);
+  }, [allBlogArticles]);
 
   const filteredArticles = useMemo(() => {
     return allBlogArticles.filter((article) => {
@@ -47,7 +49,7 @@ function BlogsPage() {
         article.excerpt.toLowerCase().includes(q);
       return matchesCat && matchesQuery;
     });
-  }, [searchQuery, selectedCategory]);
+  }, [searchQuery, selectedCategory, allBlogArticles]);
 
   return (
     <PageShell>
@@ -187,7 +189,8 @@ function BlogsPage() {
                 {/* Card Action */}
                 <div className="mt-6 pt-4 border-t border-[#ede1cb] flex items-center justify-between">
                   <span className="font-serif text-[13px] sm:text-[14px] text-[#787e6d]">
-                    {article.blocks.length} sections &bull; 8 FAQs
+                    {article.blocks.length} sections
+                    {article.faqs?.length ? ` • ${article.faqs.length} FAQs` : ""}
                   </span>
                   <Link
                     to="/blogs_/$blogId"

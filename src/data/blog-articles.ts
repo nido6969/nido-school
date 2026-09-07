@@ -14,6 +14,7 @@ export interface BlogTable {
 export type BlogBlock =
   | { type: "heading"; level: 2 | 3; text: string }
   | { type: "paragraph"; text: string }
+  | { type: "html"; html: string }
   | { type: "list"; items: string[] }
   | { type: "quote"; text: string; author?: string }
   | { type: "faq"; question: string; answer: string }

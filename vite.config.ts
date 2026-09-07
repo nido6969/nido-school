@@ -6,6 +6,7 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import { nitro } from "nitro/vite";
 
 export default defineConfig({
+  envPrefix: ["VITE_", "WORDPRESS_"],
   plugins: [
     tsconfigPaths({ projects: ["./tsconfig.json"] }),
     tanstackStart({
@@ -19,7 +20,7 @@ export default defineConfig({
       },
     }),
     nitro({
-      defaultPreset: "cloudflare-module",
+      defaultPreset: "node-server",
     }),
     react(),
     tailwindcss(),
