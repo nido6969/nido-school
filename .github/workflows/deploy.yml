@@ -26,6 +26,12 @@ jobs:
       - run: npm run build
         env:
           WORDPRESS_URL: https://www.nidomontessori.in/blog
+      - uses: actions/upload-artifact@v4
+        if: github.event_name != 'pull_request'
+        with:
+          name: amplify-output
+          path: .output
+          retention-days: 2
 
   deploy:
     name: Deploy to AWS Amplify
@@ -38,6 +44,11 @@ jobs:
       AMPLIFY_APP_ID: ${{ secrets.AMPLIFY_APP_ID }}
       AMPLIFY_BRANCH: main
     steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: amplify-output
+          path: .output
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -45,20 +56,22 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
 
-      - name: Start Amplify job and wait until it finishes
+      - name: Upload build to Amplify and wait until it finishes
         run: |
           set -euo pipefail
           if [ -z "${AMPLIFY_APP_ID}" ]; then
             echo "AMPLIFY_APP_ID secret is empty."
             exit 1
           fi
-          JOB_ID=$(aws amplify start-job \
-            --app-id "$AMPLIFY_APP_ID" \
-            --branch-name "$AMPLIFY_BRANCH" \
-            --job-type RELEASE \
-            --query "jobSummary.jobId" \
-            --output text)
-          echo "Started Amplify job $JOB_ID"
+          sudo apt-get update -y
+          sudo apt-get install -y zip
+          (cd .output && zip -r ../amplify-deploy.zip .)
+          CREATE=$(aws amplify create-deployment --app-id "$AMPLIFY_APP_ID" --branch-name "$AMPLIFY_BRANCH")
+          JOB_ID=$(echo "$CREATE" | jq -r ".jobId")
+          UPLOAD_URL=$(echo "$CREATE" | jq -r ".zipUploadUrl")
+          echo "Uploading to Amplify job $JOB_ID"
+          curl -sS -T amplify-deploy.zip "$UPLOAD_URL"
+          aws amplify start-deployment --app-id "$AMPLIFY_APP_ID" --branch-name "$AMPLIFY_BRANCH" --job-id "$JOB_ID"
           for i in $(seq 1 80); do
             STATUS=$(aws amplify get-job \
               --app-id "$AMPLIFY_APP_ID" \
