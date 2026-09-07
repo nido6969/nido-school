@@ -32,6 +32,7 @@ jobs:
       - name: Confirm Amplify bundle
         run: |
           test -f .amplify-hosting/deploy-manifest.json
+          test -f .amplify-hosting/compute/default/server.js
           test -f .amplify-hosting/compute/default/server/index.mjs
           ls -la .amplify-hosting
 
