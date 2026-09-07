@@ -33,22 +33,25 @@ jobs:
     if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    env:
+      AWS_REGION: ap-south-1
+      AMPLIFY_APP_ID: ${{ secrets.AMPLIFY_APP_ID }}
+      AMPLIFY_BRANCH: main
     steps:
       - name: Configure AWS credentials
-        if: ${{ secrets.AWS_ACCESS_KEY_ID != '' && secrets.AMPLIFY_APP_ID != '' }}
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ vars.AWS_REGION != '' && vars.AWS_REGION || 'ap-south-1' }}
+          aws-region: ap-south-1
 
       - name: Start Amplify job and wait until it finishes
-        if: ${{ secrets.AWS_ACCESS_KEY_ID != '' && secrets.AMPLIFY_APP_ID != '' }}
-        env:
-          AMPLIFY_APP_ID: ${{ secrets.AMPLIFY_APP_ID }}
-          AMPLIFY_BRANCH: ${{ vars.AMPLIFY_BRANCH != '' && vars.AMPLIFY_BRANCH || 'main' }}
         run: |
           set -euo pipefail
+          if [ -z "${AMPLIFY_APP_ID}" ]; then
+            echo "AMPLIFY_APP_ID secret is empty."
+            exit 1
+          fi
           JOB_ID=$(aws amplify start-job \
             --app-id "$AMPLIFY_APP_ID" \
             --branch-name "$AMPLIFY_BRANCH" \
@@ -72,12 +75,3 @@ jobs:
           done
           echo "Timed out waiting for Amplify job $JOB_ID"
           exit 1
-
-      - name: AWS secrets not configured yet
-        if: ${{ secrets.AWS_ACCESS_KEY_ID == '' || secrets.AMPLIFY_APP_ID == '' }}
-        run: |
-          echo "Lint/build finished. AWS deploy was skipped."
-          echo "Add GitHub secrets: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AMPLIFY_APP_ID"
-          echo "Optional repo variable: AWS_REGION (default ap-south-1)"
-          echo "One-time AWS: Amplify → Create app → GitHub → nido6969/nido-school → branch main"
-          echo "Then copy the Amplify app id into AMPLIFY_APP_ID. The next push will wait until Amplify reports SUCCEED."
