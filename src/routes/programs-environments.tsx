@@ -63,7 +63,7 @@ function ProgramsPage() {
             Toddler Community
           </h2>
           <p className="mt-1.5 font-serif text-[17px] sm:text-[20px] font-bold text-foreground">
-            Toddler Community (Ages 14 months – 2.9 years)
+            Toddler Community (Ages 14 months – 2.4/2.6 years)
           </p>
 
           <div className="mt-5 space-y-6 sm:space-y-8 font-serif text-[15px] sm:text-[18px] leading-[1.7] text-[#333]">

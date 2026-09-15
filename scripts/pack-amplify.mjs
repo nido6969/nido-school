@@ -1,4 +1,4 @@
-import { cpSync, mkdirSync, rmSync, writeFileSync, existsSync } from "node:fs";
+import { cpSync, mkdirSync, rmSync, writeFileSync, existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
 const root = process.cwd();
@@ -32,6 +32,15 @@ await import("./server/index.mjs");
 `,
 );
 
+const staticRootRoutes = existsSync(publicDir)
+  ? readdirSync(publicDir, { withFileTypes: true })
+      .filter((entry) => entry.isFile())
+      .map((file) => ({
+        path: `/${file.name}`,
+        target: { kind: "Static" },
+      }))
+  : [];
+
 const manifest = {
   version: 1,
   framework: { name: "nitro", version: "3" },
@@ -43,10 +52,7 @@ const manifest = {
         cacheControl: "public, max-age=31536000, immutable",
       },
     },
-    {
-      path: "/robots.txt",
-      target: { kind: "Static" },
-    },
+    ...staticRootRoutes,
     {
       path: "/*",
       target: { kind: "Compute", src: "default" },
