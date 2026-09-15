@@ -20,6 +20,7 @@ jobs:
       ECR_REPOSITORY: nido-school
       APP_RUNNER_SERVICE: nido-school
       WORDPRESS_URL: https://blognidomontessoriin-14b003d.ingress-earth.ewp.live
+      WORDPRESS_EXCLUDE_CATEGORY: research
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -55,6 +56,7 @@ jobs:
           docker build \
             --build-arg WORDPRESS_URL="$WORDPRESS_URL" \
             --build-arg WORDPRESS_CONTENT_TYPE=posts \
+            --build-arg WORDPRESS_EXCLUDE_CATEGORY="${WORDPRESS_EXCLUDE_CATEGORY:-research}" \
             -t "$IMAGE:$TAG" \
             -t "$IMAGE:latest" \
             .
@@ -71,7 +73,7 @@ jobs:
           SERVICE_ARN=$(aws apprunner list-services --query "ServiceSummaryList[?ServiceName=='${APP_RUNNER_SERVICE}'].ServiceArn" --output text | tr -d '\r')
 
           EXPECTED_IMAGE="$IMAGE:$TAG"
-          python3 -c "import json; json.dump({'AuthenticationConfiguration':{'AccessRoleArn':'$ROLE_ARN'},'AutoDeploymentsEnabled':False,'ImageRepository':{'ImageIdentifier':'$EXPECTED_IMAGE','ImageRepositoryType':'ECR','ImageConfiguration':{'Port':'3000','RuntimeEnvironmentVariables':{'HOST':'0.0.0.0','PORT':'3000','WORDPRESS_URL':'$WORDPRESS_URL','WORDPRESS_CONTENT_TYPE':'posts'}}}}, open('/tmp/apprunner-source.json','w'))"
+          python3 -c "import json; json.dump({'AuthenticationConfiguration':{'AccessRoleArn':'$ROLE_ARN'},'AutoDeploymentsEnabled':False,'ImageRepository':{'ImageIdentifier':'$EXPECTED_IMAGE','ImageRepositoryType':'ECR','ImageConfiguration':{'Port':'3000','RuntimeEnvironmentVariables':{'HOST':'0.0.0.0','PORT':'3000','WORDPRESS_URL':'$WORDPRESS_URL','WORDPRESS_CONTENT_TYPE':'posts','WORDPRESS_EXCLUDE_CATEGORY':'${WORDPRESS_EXCLUDE_CATEGORY:-research}'}}}}, open('/tmp/apprunner-source.json','w'))"
 
           if [ -z "$SERVICE_ARN" ] || [ "$SERVICE_ARN" = "None" ]; then
             echo "Creating App Runner service"

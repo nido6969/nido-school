@@ -106,22 +106,54 @@ function mapPost(post: WpPost): BlogArticle {
   };
 }
 
-function restUrls(origin: string, page: number): string[] {
-  const query = `per_page=100&page=${page}&_embed=1&status=publish`;
+function restUrls(origin: string, page: number, extraQuery = ""): string[] {
+  const query = `per_page=100&page=${page}&_embed=1&status=publish${extraQuery}`;
   return [
     `${origin}/wp-json/wp/v2/posts?${query}`,
     `${origin}/index.php?rest_route=/wp/v2/posts&${query}`,
   ];
 }
 
+async function categoryIdBySlug(origin: string, slug: string): Promise<number | null> {
+  const urls = [
+    `${origin}/wp-json/wp/v2/categories?slug=${encodeURIComponent(slug)}`,
+    `${origin}/index.php?rest_route=/wp/v2/categories&slug=${encodeURIComponent(slug)}`,
+  ];
+  for (const url of urls) {
+    try {
+      const response = await fetch(url, {
+        headers: { Accept: "application/json" },
+        cache: "no-store",
+        signal: AbortSignal.timeout(12000),
+      });
+      if (!response.ok) continue;
+      const payload = (await response.json()) as { id?: number }[];
+      if (Array.isArray(payload) && payload[0]?.id) return payload[0].id;
+    } catch (error) {
+      console.warn("WordPress category lookup failed", url, error);
+    }
+  }
+  return null;
+}
+
+function excludeCategorySlug(): string {
+  const raw =
+    (typeof process !== "undefined" && process.env.WORDPRESS_EXCLUDE_CATEGORY) ||
+    (typeof import.meta !== "undefined" &&
+      (import.meta.env.WORDPRESS_EXCLUDE_CATEGORY as string | undefined)) ||
+    "research";
+  return raw.trim().toLowerCase();
+}
+
 async function fetchPostsPage(
   origin: string,
   page: number,
+  extraQuery = "",
 ): Promise<{
   posts: WpPost[];
   totalPages: number;
 } | null> {
-  for (const url of restUrls(origin, page)) {
+  for (const url of restUrls(origin, page, extraQuery)) {
     try {
       const response = await fetch(url, {
         headers: { Accept: "application/json" },
@@ -148,12 +180,14 @@ async function fetchAllWordpressPosts(): Promise<BlogArticle[] | null> {
   const origin = wordpressOrigin();
   if (!origin) return null;
 
-  const first = await fetchPostsPage(origin, 1);
+  const excludeId = await categoryIdBySlug(origin, excludeCategorySlug());
+  const extraQuery = excludeId ? `&categories_exclude=${excludeId}` : "";
+  const first = await fetchPostsPage(origin, 1, extraQuery);
   if (!first) return null;
 
   const collected = [...first.posts];
   for (let page = 2; page <= first.totalPages; page += 1) {
-    const next = await fetchPostsPage(origin, page);
+    const next = await fetchPostsPage(origin, page, extraQuery);
     if (!next) break;
     collected.push(...next.posts);
   }
