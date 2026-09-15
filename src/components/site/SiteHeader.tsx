@@ -25,63 +25,64 @@ export function SiteHeader() {
     };
   }, [open]);
 
-  const menu = open && mounted
-    ? createPortal(
-        <div
-          className="fixed inset-0 z-[80] flex flex-col bg-[#faf4e8] xl:hidden"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Site menu"
-        >
-          <div className="flex items-center justify-between gap-3 px-4 py-3 shadow-[0_1px_6px_oklch(0_0_0/0.08)]">
-            <p className="font-display text-lg font-extrabold text-olive">Menu</p>
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              aria-label="Close navigation menu"
-              className="flex h-11 w-11 items-center justify-center rounded-xl bg-cream-deep/60 text-olive"
-            >
-              <X className="h-6 w-6" />
-            </button>
-          </div>
-          <nav aria-label="Mobile Navigation" className="flex-1 overflow-y-auto px-4 py-4">
-            <ul className="flex flex-col gap-3">
-              {mainNav.map((item) => (
-                <li key={item.to}>
-                  <Link
-                    to={item.to}
-                    className="flex min-h-12 items-center justify-between rounded-2xl bg-white px-5 py-3 font-body text-[17px] font-bold text-olive shadow-[0_1px_3px_oklch(0_0_0/0.08)]"
-                    activeProps={{
-                      className:
-                        "flex min-h-12 items-center justify-between rounded-2xl bg-white px-5 py-3 font-body text-[17px] font-bold text-olive shadow-[0_1px_3px_oklch(0_0_0/0.08)] ring-2 ring-olive",
-                    }}
-                    activeOptions={{ exact: item.to === "/" }}
-                    onClick={() => setOpen(false)}
-                  >
-                    <span>{item.label}</span>
-                    <span className="text-xs opacity-60">→</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <div className="border-t border-cream-deep px-4 py-5">
-            <Link
-              to="/contact-us"
-              className="flex w-full items-center justify-center gap-2 rounded-2xl bg-olive py-3.5 px-4 font-display text-lg font-bold text-white shadow-md"
-              onClick={() => setOpen(false)}
-            >
-              <PhoneCall className="h-5 w-5" />
-              <span>Schedule a Visit</span>
-            </Link>
-            <p className="mt-3 text-center font-serif text-xs text-muted-foreground">
-              Bowrampet, Hyderabad • +91 9618853888
-            </p>
-          </div>
-        </div>,
-        document.body,
-      )
-    : null;
+  const menu =
+    open && mounted
+      ? createPortal(
+          <div
+            className="fixed inset-0 z-[80] flex flex-col bg-[#faf4e8] xl:hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site menu"
+          >
+            <div className="flex items-center justify-between gap-3 px-4 py-3 shadow-[0_1px_6px_oklch(0_0_0/0.08)]">
+              <p className="font-display text-lg font-extrabold text-olive">Menu</p>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                aria-label="Close navigation menu"
+                className="flex h-11 w-11 items-center justify-center rounded-xl bg-cream-deep/60 text-olive"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+            <nav aria-label="Mobile Navigation" className="flex-1 overflow-y-auto px-4 py-4">
+              <ul className="flex flex-col gap-3">
+                {mainNav.map((item) => (
+                  <li key={item.to}>
+                    <Link
+                      to={item.to}
+                      className="flex min-h-12 items-center justify-between rounded-2xl bg-white px-5 py-3 font-body text-[17px] font-bold text-olive shadow-[0_1px_3px_oklch(0_0_0/0.08)]"
+                      activeProps={{
+                        className:
+                          "flex min-h-12 items-center justify-between rounded-2xl bg-white px-5 py-3 font-body text-[17px] font-bold text-olive shadow-[0_1px_3px_oklch(0_0_0/0.08)] ring-2 ring-olive",
+                      }}
+                      activeOptions={{ exact: item.to === "/" }}
+                      onClick={() => setOpen(false)}
+                    >
+                      <span>{item.label}</span>
+                      <span className="text-xs opacity-60">→</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <div className="border-t border-cream-deep px-4 py-5">
+              <Link
+                to="/contact-us"
+                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-olive py-3.5 px-4 font-display text-lg font-bold text-white shadow-md"
+                onClick={() => setOpen(false)}
+              >
+                <PhoneCall className="h-5 w-5" />
+                <span>Schedule a Visit</span>
+              </Link>
+              <p className="mt-3 text-center font-serif text-xs text-muted-foreground">
+                Bowrampet, Hyderabad • +91 9618853888
+              </p>
+            </div>
+          </div>,
+          document.body,
+        )
+      : null;
 
   return (
     <header className="sticky top-0 z-50 w-full bg-cream/95 backdrop-blur-md shadow-[0_1px_6px_oklch(0_0_0/0.06)]">
