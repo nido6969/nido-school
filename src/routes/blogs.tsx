@@ -165,7 +165,7 @@ function BlogsPage() {
                   {/* Title */}
                   <h2 className="mt-4 font-body text-[22px] sm:text-[25px] font-bold leading-snug text-[#1f2511] group-hover:text-[#636B2F] transition-colors">
                     <Link
-                      to="/blogs_/$blogId"
+                      to="/blogs/$blogId"
                       params={{ blogId: article.id }}
                       className="focus:outline-none"
                     >
@@ -193,7 +193,7 @@ function BlogsPage() {
                     {article.faqs?.length ? ` • ${article.faqs.length} FAQs` : ""}
                   </span>
                   <Link
-                    to="/blogs_/$blogId"
+                    to="/blogs/$blogId"
                     params={{ blogId: article.id }}
                     className="inline-flex items-center gap-1.5 font-serif text-[15px] font-bold text-[#636B2F] transition-transform group-hover:translate-x-1 hover:text-[#4d5324]"
                   >

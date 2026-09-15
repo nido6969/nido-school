@@ -301,7 +301,7 @@ function SingleBlogPage() {
               {relatedArticles.map((rel) => (
                 <Link
                   key={rel.id}
-                  to="/blogs_/$blogId"
+                  to="/blogs/$blogId"
                   params={{ blogId: rel.id }}
                   className="flex flex-col justify-between rounded-2xl border border-[#ebdcc3] bg-[#faf6ee] p-5 shadow-2xs transition-transform hover:-translate-y-1 hover:shadow-md"
                 >

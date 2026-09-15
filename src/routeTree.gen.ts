@@ -18,7 +18,10 @@ import { Route as ContactUsRouteImport } from './routes/contact-us'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as MissionVisionRouteImport } from './routes/mission-vision'
 import { Route as ProgramsEnvironmentsRouteImport } from './routes/programs-environments'
+import { Route as BlogWpAdminRouteImport } from './routes/blog_/wp-admin'
 import { Route as BlogsBlogIdRouteImport } from './routes/blogs_/$blogId'
+import { Route as BlogsSlugRouteImport } from './routes/blogs[_].$slug'
+import { Route as BlogsWpAdminRouteImport } from './routes/blogs_/wp-admin'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -65,9 +68,24 @@ const ProgramsEnvironmentsRoute = ProgramsEnvironmentsRouteImport.update({
   path: '/programs-environments',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogWpAdminRoute = BlogWpAdminRouteImport.update({
+  id: '/blog_/wp-admin',
+  path: '/blog/wp-admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogsBlogIdRoute = BlogsBlogIdRouteImport.update({
   id: '/blogs_/$blogId',
   path: '/blogs/$blogId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogsSlugRoute = BlogsSlugRouteImport.update({
+  id: '/blogs_/$slug',
+  path: '/blogs_/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogsWpAdminRoute = BlogsWpAdminRouteImport.update({
+  id: '/blogs_/wp-admin',
+  path: '/blogs/wp-admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -81,7 +99,10 @@ export interface FileRoutesByFullPath {
   '/faqs': typeof FaqsRoute
   '/mission-vision': typeof MissionVisionRoute
   '/programs-environments': typeof ProgramsEnvironmentsRoute
+  '/blog/wp-admin': typeof BlogWpAdminRoute
   '/blogs/$blogId': typeof BlogsBlogIdRoute
+  '/blogs_/$slug': typeof BlogsSlugRoute
+  '/blogs/wp-admin': typeof BlogsWpAdminRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -93,7 +114,10 @@ export interface FileRoutesByTo {
   '/faqs': typeof FaqsRoute
   '/mission-vision': typeof MissionVisionRoute
   '/programs-environments': typeof ProgramsEnvironmentsRoute
+  '/blog/wp-admin': typeof BlogWpAdminRoute
   '/blogs/$blogId': typeof BlogsBlogIdRoute
+  '/blogs_/$slug': typeof BlogsSlugRoute
+  '/blogs/wp-admin': typeof BlogsWpAdminRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -106,7 +130,10 @@ export interface FileRoutesById {
   '/faqs': typeof FaqsRoute
   '/mission-vision': typeof MissionVisionRoute
   '/programs-environments': typeof ProgramsEnvironmentsRoute
+  '/blog_/wp-admin': typeof BlogWpAdminRoute
   '/blogs_/$blogId': typeof BlogsBlogIdRoute
+  '/blogs_/$slug': typeof BlogsSlugRoute
+  '/blogs_/wp-admin': typeof BlogsWpAdminRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -120,7 +147,10 @@ export interface FileRouteTypes {
     | '/faqs'
     | '/mission-vision'
     | '/programs-environments'
+    | '/blog/wp-admin'
     | '/blogs/$blogId'
+    | '/blogs_/$slug'
+    | '/blogs/wp-admin'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -132,7 +162,10 @@ export interface FileRouteTypes {
     | '/faqs'
     | '/mission-vision'
     | '/programs-environments'
+    | '/blog/wp-admin'
     | '/blogs/$blogId'
+    | '/blogs_/$slug'
+    | '/blogs/wp-admin'
   id:
     | '__root__'
     | '/'
@@ -144,7 +177,10 @@ export interface FileRouteTypes {
     | '/faqs'
     | '/mission-vision'
     | '/programs-environments'
+    | '/blog_/wp-admin'
     | '/blogs_/$blogId'
+    | '/blogs_/$slug'
+    | '/blogs_/wp-admin'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -157,7 +193,10 @@ export interface RootRouteChildren {
   FaqsRoute: typeof FaqsRoute
   MissionVisionRoute: typeof MissionVisionRoute
   ProgramsEnvironmentsRoute: typeof ProgramsEnvironmentsRoute
+  BlogWpAdminRoute: typeof BlogWpAdminRoute
   BlogsBlogIdRoute: typeof BlogsBlogIdRoute
+  BlogsSlugRoute: typeof BlogsSlugRoute
+  BlogsWpAdminRoute: typeof BlogsWpAdminRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -225,11 +264,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgramsEnvironmentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog_/wp-admin': {
+      id: '/blog_/wp-admin'
+      path: '/blog/wp-admin'
+      fullPath: '/blog/wp-admin'
+      preLoaderRoute: typeof BlogWpAdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blogs_/$blogId': {
       id: '/blogs_/$blogId'
       path: '/blogs/$blogId'
       fullPath: '/blogs/$blogId'
       preLoaderRoute: typeof BlogsBlogIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs_/$slug': {
+      id: '/blogs_/$slug'
+      path: '/blogs_/$slug'
+      fullPath: '/blogs_/$slug'
+      preLoaderRoute: typeof BlogsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs_/wp-admin': {
+      id: '/blogs_/wp-admin'
+      path: '/blogs/wp-admin'
+      fullPath: '/blogs/wp-admin'
+      preLoaderRoute: typeof BlogsWpAdminRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -245,7 +305,10 @@ const rootRouteChildren: RootRouteChildren = {
   FaqsRoute: FaqsRoute,
   MissionVisionRoute: MissionVisionRoute,
   ProgramsEnvironmentsRoute: ProgramsEnvironmentsRoute,
+  BlogWpAdminRoute: BlogWpAdminRoute,
   BlogsBlogIdRoute: BlogsBlogIdRoute,
+  BlogsSlugRoute: BlogsSlugRoute,
+  BlogsWpAdminRoute: BlogsWpAdminRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
