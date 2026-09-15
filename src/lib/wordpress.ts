@@ -19,8 +19,8 @@ type WpPost = {
   _embedded?: WpEmbedded;
 };
 
-/** Live NIDO WordPress (subdirectory). Editors: /blog/wp-admin */
-const DEFAULT_WORDPRESS_URL = "https://www.nidomontessori.in/blog";
+/** EasyWP origin. Editors: /blogs/wp-admin on the school site redirects to /wp-admin here. */
+const DEFAULT_WORDPRESS_URL = "https://blognidomontessoriin-14b003d.ingress-earth.ewp.live";
 
 /** Short TTL so a newly published post appears on /blogs without a git deploy. */
 const CACHE_MS = 15_000;
@@ -35,6 +35,10 @@ function wordpressOrigin(): string {
       (import.meta.env.VITE_WORDPRESS_URL as string | undefined)) ||
     DEFAULT_WORDPRESS_URL;
   return raw.trim().replace(/\/+$/, "");
+}
+
+export function wordpressAdminUrl(): string {
+  return `${wordpressOrigin()}/wp-admin`;
 }
 
 function stripTags(html: string): string {
