@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/site/PageShell";
 
 import bgImg from "@/assets/background.jpg";
-import founderImg from "@/assets/ChatGPT Image Aug 1, 2026, 03_34_20 PM.png";
+import founderImg from "@/assets/founder.jpeg";
 
 export const Route = createFileRoute("/about-us")({
   component: AboutPage,
@@ -87,7 +87,7 @@ function AboutPage() {
               Visionary
             </p>
             <p className="mt-4 font-serif text-[16px] sm:text-[18px] lg:text-[20px] leading-[1.7] text-[#333]">
-              NIDO Montessori School is the direct realization of Shobha Gupta's 20 years long
+              NIDO Montessori School is the direct realization of Shobha Goyal's 20 years long
               dedication to the Montessori philosophy. Her journey began not just as an educator,
               but as a parent whose two daughters thrived under the method, validating its profound,
               lifelong impact. Shobha is formally trained by the prestigious Association Montessori

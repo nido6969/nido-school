@@ -24,16 +24,6 @@ function AdmissionsPage() {
   const steps = [
     {
       num: "1",
-      title: "Explore our website & philosophy",
-      desc: "Familiarize yourself with the Montessori Method and our school's unique approach.",
-    },
-    {
-      num: "2",
-      title: "Schedule a Tour",
-      desc: "Experience our prepared environment firsthand, observe classrooms, and meet our team. This is a wonderful opportunity to ask questions.",
-    },
-    {
-      num: "3",
       title: "Submit an application",
       desc: "Complete our online application form. (application form)",
       link: {
@@ -42,17 +32,17 @@ function AdmissionsPage() {
       },
     },
     {
-      num: "4",
+      num: "2",
       title: "Schedule a collaborative session",
       desc: "This session makes sure to understand each other better to remain focussed on the common crux - “The Child”",
     },
     {
-      num: "5",
+      num: "3",
       title: "Enrollment Offer",
       desc: "We will notify you of your child's acceptance.",
     },
     {
-      num: "6",
+      num: "4",
       title: "Secure Your Spot",
       desc: "Complete the enrollment agreement and submit required deposits by the specified deadline.",
     },

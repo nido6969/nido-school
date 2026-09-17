@@ -9,7 +9,7 @@ export const Route = createFileRoute("/contact-us")({
       {
         name: "description",
         content:
-          "Call 8712034644, email info@nidomontessori.in, or visit NIDO Montessori Preschool in Bowrampet, Telangana.",
+          "Call 9618853888, 8712034644, email info@nidomontessori.in, or visit NIDO Montessori Preschool in Bowrampet, Telangana.",
       },
       { property: "og:title", content: "Contact Us – NIDO Montessori" },
       { property: "og:description", content: "Schedule a visit or send us a message." },
@@ -168,6 +168,10 @@ function ContactPage() {
               <div className="pt-2 border-t border-[#e2d2b8] space-y-1">
                 <p>
                   <strong className="font-bold">Phone:</strong>{" "}
+                  <a href="tel:+919618853888" className="underline hover:text-[#c4935c]">
+                    9618853888
+                  </a>
+                  {", "}
                   <a href="tel:+918712034644" className="underline hover:text-[#c4935c]">
                     8712034644
                   </a>
