@@ -55,7 +55,10 @@ export function SiteFooter() {
       <div className="relative mx-auto max-w-[1400px] px-5 py-10 sm:px-8 lg:px-12 lg:py-14">
         <div className="grid gap-10 lg:grid-cols-[1.15fr_0.9fr_1.15fr_1.1fr] lg:gap-12 items-start">
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-            <Link to="/" className="inline-flex overflow-hidden rounded-2xl shadow-[0_4px_16px_oklch(0.4_0.04_80/0.12)] ring-1 ring-[#d4b56a]/40">
+            <Link
+              to="/"
+              className="inline-flex overflow-hidden rounded-2xl shadow-[0_4px_16px_oklch(0.4_0.04_80/0.12)] ring-1 ring-[#d4b56a]/40"
+            >
               <img
                 src={logo}
                 alt="NIDO — A Montessori Preschool"
