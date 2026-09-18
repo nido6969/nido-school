@@ -139,8 +139,7 @@ function HomePage() {
           rel="noreferrer"
           className="inline-flex items-center gap-2 rounded-full px-4 py-2.5 min-h-[44px] text-white shadow-[0_4px_14px_oklch(0_0_0/0.14)] transition-all hover:scale-[1.02] active:scale-98"
           style={{
-            backgroundImage:
-              "linear-gradient(45deg, #f9ce34 0%, #ee2a7b 50%, #6228d7 100%)",
+            backgroundImage: "linear-gradient(45deg, #f9ce34 0%, #ee2a7b 50%, #6228d7 100%)",
           }}
         >
           <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" aria-hidden="true">
