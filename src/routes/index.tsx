@@ -2,8 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/site/PageShell";
 
+import heroClassroom from "@/assets/hero-classroom.png";
 import heroLogo from "@/assets/nido_20hero_20logo.jpeg";
-import heroImg from "@/assets/hero.png";
 import blob1 from "@/assets/home_20image.png";
 import blob2 from "@/assets/home_20blob_20image_202.png";
 import blob3 from "@/assets/home_20blob_20image_203.png";
@@ -52,47 +52,43 @@ function HomePage() {
   return (
     <PageShell>
       {/* HERO SECTION */}
-      <section className="nido-card rounded-2xl sm:rounded-[24px] bg-[#faf4e8] p-4 sm:p-5 lg:p-6 shadow-[0_6px_24px_oklch(0_0_0/0.06)]">
-        <div className="grid items-center gap-4 sm:gap-5 lg:grid-cols-[1.3fr_1fr]">
-          <div className="text-center flex flex-col items-center">
+      <section className="relative mx-auto h-[280px] w-full max-w-[1120px] overflow-hidden rounded-2xl sm:h-[384px] sm:rounded-[24px] bg-[#faf4e8] shadow-[0_6px_24px_oklch(0_0_0/0.06)]">
+        <img
+          src={heroClassroom}
+          alt=""
+          width={2003}
+          height={785}
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover object-[78%_center] sm:object-center"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 flex items-center">
+          <div className="flex w-[54%] max-w-[480px] flex-col items-start px-5 py-5 sm:w-[48%] sm:px-8 sm:py-6 lg:px-10 xl:px-12">
             <img
               src={heroLogo}
-              alt="NIDO Montessori Logo"
+              alt="NIDO — A Montessori Preschool"
               width={800}
               height={300}
-              fetchPriority="high"
-              className="mx-auto w-full max-w-[200px] sm:max-w-[300px] lg:max-w-[380px] max-h-[120px] sm:max-h-[150px] object-contain rounded-xl"
+              className="w-full max-w-[180px] sm:max-w-[230px] lg:max-w-[270px] xl:max-w-[300px] h-auto object-contain rounded-xl"
             />
-            <h1 className="mt-3 font-display text-[22px] sm:text-[28px] lg:text-[34px] font-black text-[#2a2a2a] leading-tight">
+            <p className="mt-2.5 font-display text-[9px] sm:text-[11px] lg:text-[12px] font-bold uppercase tracking-[0.12em] sm:tracking-[0.14em] text-[#6f7c3a]">
+              Bowrampet, Hyderabad · Ages 14 months – 6 years
+            </p>
+            <h1 className="mt-1 font-display text-[16px] sm:text-[22px] lg:text-[30px] xl:text-[34px] font-black text-[#2a2a2a] leading-[1.15]">
               Your Child's Sanctuary
             </h1>
             <Link
               to="/admissions"
-              className="mt-3 flex w-full sm:w-auto items-center justify-center rounded-xl sm:rounded-[16px] bg-[#7fc2e8] px-5 sm:px-6 py-2.5 font-display text-base sm:text-lg font-extrabold text-black shadow-[0_3px_10px_oklch(0_0_0/0.12)] transition-all hover:bg-[#5ba7d1] hover:scale-105 active:scale-98 min-h-[40px]"
+              className="mt-2.5 sm:mt-3.5 inline-flex items-center justify-center rounded-xl sm:rounded-[16px] bg-[#7fc2e8] px-3.5 sm:px-5 py-1.5 sm:py-2 font-display text-sm sm:text-[15px] lg:text-base font-extrabold text-black shadow-[0_3px_10px_oklch(0_0_0/0.12)] transition-all hover:bg-[#5ba7d1] hover:scale-105 active:scale-98 min-h-[34px] sm:min-h-[38px]"
             >
               Begin the Journey
-            </Link>
-          </div>
-          <div className="flex justify-center mt-1 lg:mt-0">
-            <Link
-              to="/programs-environments"
-              className="block overflow-hidden rounded-2xl group w-full max-w-[220px] sm:max-w-[280px]"
-            >
-              <img
-                src={heroImg}
-                alt="Kids Learning at NIDO"
-                width={420}
-                height={420}
-                loading="lazy"
-                className="w-full h-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
-              />
             </Link>
           </div>
         </div>
       </section>
 
       {/* CORE PILLARS BLOBS SECTION */}
-      <section className="mt-5 sm:mt-7" aria-label="Core Pillars">
+      <section className="mx-auto mt-5 w-full max-w-[980px] sm:mt-7" aria-label="Core Pillars">
         <div className="grid gap-3 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {pillars.map((pillar) => (
             <Link
@@ -117,7 +113,7 @@ function HomePage() {
       </section>
 
       {/* SCHEDULE VISIT & SOCIAL */}
-      <section className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+      <section className="mx-auto mt-6 flex w-full max-w-[980px] flex-wrap items-center justify-start gap-3 sm:mt-8 sm:gap-4">
         <Link
           to="/contact-us"
           className="inline-flex w-fit max-w-full items-center justify-center rounded-full bg-[#03A9F4] px-5 py-2.5 text-center font-display text-base sm:text-lg font-bold text-black shadow-[0_4px_14px_oklch(0_0_0/0.14)] transition-all hover:scale-[1.02] active:scale-98 leading-snug min-h-[44px]"
@@ -141,7 +137,11 @@ function HomePage() {
           href="https://www.instagram.com/nido_montessorischool?igsh=c2tsN3p2dnJnOGZv&utm_source=qr"
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 min-h-[44px] text-[#E1306C] shadow-[0_4px_14px_oklch(0_0_0/0.10)] transition-all hover:scale-[1.02] active:scale-98"
+          className="inline-flex items-center gap-2 rounded-full px-4 py-2.5 min-h-[44px] text-white shadow-[0_4px_14px_oklch(0_0_0/0.14)] transition-all hover:scale-[1.02] active:scale-98"
+          style={{
+            backgroundImage:
+              "linear-gradient(45deg, #f9ce34 0%, #ee2a7b 50%, #6228d7 100%)",
+          }}
         >
           <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" aria-hidden="true">
             <path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.8 3.8 0 0 1-1.38-.9 3.8 3.8 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 3.68a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zm0 10.16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.4a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z" />

@@ -9,6 +9,9 @@ const familyLinks = mainNav.filter((item) =>
   ["/faqs", "/admissions", "/careers", "/contact-us"].includes(item.to),
 );
 
+const footerHeadingClass =
+  "inline-block font-display text-base sm:text-lg font-extrabold uppercase tracking-[0.18em] text-[#b3943c] border-b-2 border-[#d4b56a] pb-1";
+
 function PhoneIcon() {
   return (
     <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 fill-current" aria-hidden="true">
@@ -57,7 +60,7 @@ export function SiteFooter() {
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <Link
               to="/"
-              className="inline-flex overflow-hidden rounded-2xl shadow-[0_4px_16px_oklch(0.4_0.04_80/0.12)] ring-1 ring-[#d4b56a]/40"
+              className="inline-flex overflow-hidden rounded-full shadow-[0_4px_16px_oklch(0.4_0.04_80/0.12)] ring-1 ring-[#d4b56a]/40"
             >
               <img
                 src={logo}
@@ -65,7 +68,7 @@ export function SiteFooter() {
                 width={140}
                 height={140}
                 loading="lazy"
-                className="h-[96px] w-[96px] sm:h-[120px] sm:w-[120px] object-cover"
+                className="h-[96px] w-[96px] sm:h-[120px] sm:w-[120px] rounded-full object-cover"
               />
             </Link>
             <p className="mt-4 font-display text-xl sm:text-2xl font-bold leading-tight text-[#b3943c]">
@@ -120,9 +123,7 @@ export function SiteFooter() {
 
           <nav aria-label="Footer" className="grid grid-cols-2 gap-8 text-center sm:text-left">
             <div>
-              <h2 className="font-display text-sm font-bold uppercase tracking-[0.16em] text-[#6f7c3a]">
-                Explore
-              </h2>
+              <h2 className={footerHeadingClass}>Explore</h2>
               <ul className="mt-4 flex flex-col gap-2.5">
                 {exploreLinks.map((item) => (
                   <li key={item.to}>
@@ -137,9 +138,7 @@ export function SiteFooter() {
               </ul>
             </div>
             <div>
-              <h2 className="font-display text-sm font-bold uppercase tracking-[0.16em] text-[#6f7c3a]">
-                Families
-              </h2>
+              <h2 className={footerHeadingClass}>Families</h2>
               <ul className="mt-4 flex flex-col gap-2.5">
                 {familyLinks.map((item) => (
                   <li key={item.to}>
@@ -156,9 +155,7 @@ export function SiteFooter() {
           </nav>
 
           <div className="text-center sm:text-left">
-            <h2 className="font-display text-sm font-bold uppercase tracking-[0.16em] text-[#6f7c3a]">
-              Visit Us
-            </h2>
+            <h2 className={footerHeadingClass}>Visit Us</h2>
             <address className="mt-4 not-italic space-y-3 font-serif text-[15px] sm:text-base leading-relaxed text-[#6b6448]">
               <p className="flex items-start justify-center sm:justify-start gap-2.5 text-[#4a4528]">
                 <span className="mt-0.5 text-[#b3943c]">
@@ -207,9 +204,7 @@ export function SiteFooter() {
           </div>
 
           <div className="text-center sm:text-left">
-            <h2 className="font-display text-sm font-bold uppercase tracking-[0.16em] text-[#6f7c3a]">
-              Find Us
-            </h2>
+            <h2 className={footerHeadingClass}>Find Us</h2>
             <a
               href="https://www.google.com/maps/place/17%C2%B033'11.5%22N+78%C2%B023'01.9%22E/@17.5536953,78.3826678,18z/data=!4m4!3m3!8m2!3d17.5531826!4d78.3838654"
               target="_blank"

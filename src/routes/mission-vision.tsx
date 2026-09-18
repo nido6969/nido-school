@@ -31,7 +31,11 @@ const coreValues = [
   { term: "Independence", detail: "Fostering the ability to “do it myself.”" },
   { term: "Curiosity", detail: "Igniting a natural desire to explore and discover." },
   { term: "Community", detail: "Building a supportive and collaborative environment." },
-  { term: "Authenticity", detail: "Upholding the true spirit and method of Montessori education." },
+  {
+    term: "Authenticity",
+    detail:
+      "Upholding the true spirit and method of Montessori education. We hire only AMI/AMS-trained Montessori guides, ensuring every classroom is led by educators with authentic, credentialed training in the Method.",
+  },
 ];
 
 function MissionVisionPage() {

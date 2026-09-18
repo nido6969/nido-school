@@ -52,7 +52,9 @@ function ProgramsPage() {
           At NIDO, each of our classrooms is a carefully 'prepared environment' designed to meet the
           specific developmental needs of children within distinct age ranges. Our beautiful spaces
           encourage freedom of movement, exploration, and hands-on learning with authentic
-          Montessori materials.
+          Montessori materials. Each morning includes an uninterrupted work cycle of up to three
+          hours, giving children the sustained, undisturbed time Dr. Montessori believed was
+          essential for deep concentration and self-directed learning.
         </p>
       </div>
 
