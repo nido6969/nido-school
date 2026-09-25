@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell } from "@/components/site/PageShell";
 
 import bgImg from "@/assets/background.jpg";
@@ -50,6 +50,19 @@ function AboutPage() {
               respect, freedom within limits, and hands-on learning are at the heart of everything
               we do.
             </p>
+            <div className="mt-5 rounded-xl bg-[#faf6ec] p-4 border border-[#d4b56a]/40 text-[#4a4528]">
+              <p className="font-serif text-[15px] sm:text-[17px] leading-relaxed">
+                <strong className="font-bold text-[#636B2F]">IMF Flagship School:</strong> NIDO is
+                honoured to be recognised as a flagship school by the Indian Montessori Foundation.
+                Explore our{" "}
+                <Link
+                  to="/affiliations"
+                  className="font-bold text-[#b3943c] underline hover:text-[#9a7b2e]"
+                >
+                  Affiliations &amp; Montessori Training Centres Directory →
+                </Link>
+              </p>
+            </div>
           </div>
           <div className="flex justify-center mt-2 lg:mt-0">
             <img

@@ -79,6 +79,13 @@ export function SiteFooter() {
               to 6 years.
             </p>
             <Link
+              to="/affiliations"
+              className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-[#faf6ec] px-3.5 py-1 font-serif text-xs sm:text-sm font-semibold text-[#636B2F] border border-[#d4b56a]/60 transition-colors hover:bg-[#ede3c7] hover:text-[#4a4528]"
+            >
+              <span className="inline-block h-2 w-2 rounded-full bg-[#b3943c]" />
+              IMF Flagship School
+            </Link>
+            <Link
               to="/contact-us"
               className="mt-5 inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#b3943c] px-5 py-2.5 font-display text-sm sm:text-base font-bold text-[#f6edd8] shadow-[0_4px_12px_oklch(0.45_0.08_85/0.28)] transition-transform hover:scale-[1.03] hover:bg-[#9a7b2e] active:scale-98"
             >
@@ -135,6 +142,14 @@ export function SiteFooter() {
                     </Link>
                   </li>
                 ))}
+                <li>
+                  <Link
+                    to="/affiliations"
+                    className="font-serif text-[15px] sm:text-base text-[#4a4528] transition-colors hover:text-[#b3943c]"
+                  >
+                    IMF Flagship School
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
@@ -229,6 +244,12 @@ export function SiteFooter() {
           <p className="font-serif text-xs sm:text-sm text-[#6b6448]">
             © {new Date().getFullYear()} NIDO Montessori Preschool. All rights reserved.
           </p>
+          <Link
+            to="/affiliations"
+            className="font-serif text-xs sm:text-sm font-semibold text-[#636B2F] hover:text-[#b3943c] underline underline-offset-2 transition-colors"
+          >
+            IMF Flagship School
+          </Link>
           <p className="font-serif text-xs sm:text-sm text-[#6b6448]">Bowrampet, Hyderabad</p>
         </div>
       </div>

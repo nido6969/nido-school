@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as AdmissionsRouteImport } from './routes/admissions'
+import { Route as AffiliationsRouteImport } from './routes/affiliations'
 import { Route as BlogsRouteImport } from './routes/blogs'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as ContactUsRouteImport } from './routes/contact-us'
@@ -36,6 +37,11 @@ const AboutUsRoute = AboutUsRouteImport.update({
 const AdmissionsRoute = AdmissionsRouteImport.update({
   id: '/admissions',
   path: '/admissions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AffiliationsRoute = AffiliationsRouteImport.update({
+  id: '/affiliations',
+  path: '/affiliations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogsRoute = BlogsRouteImport.update({
@@ -93,6 +99,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
   '/admissions': typeof AdmissionsRoute
+  '/affiliations': typeof AffiliationsRoute
   '/blogs': typeof BlogsRoute
   '/careers': typeof CareersRoute
   '/contact-us': typeof ContactUsRoute
@@ -108,6 +115,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
   '/admissions': typeof AdmissionsRoute
+  '/affiliations': typeof AffiliationsRoute
   '/blogs': typeof BlogsRoute
   '/careers': typeof CareersRoute
   '/contact-us': typeof ContactUsRoute
@@ -124,6 +132,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
   '/admissions': typeof AdmissionsRoute
+  '/affiliations': typeof AffiliationsRoute
   '/blogs': typeof BlogsRoute
   '/careers': typeof CareersRoute
   '/contact-us': typeof ContactUsRoute
@@ -141,6 +150,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about-us'
     | '/admissions'
+    | '/affiliations'
     | '/blogs'
     | '/careers'
     | '/contact-us'
@@ -156,6 +166,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about-us'
     | '/admissions'
+    | '/affiliations'
     | '/blogs'
     | '/careers'
     | '/contact-us'
@@ -171,6 +182,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about-us'
     | '/admissions'
+    | '/affiliations'
     | '/blogs'
     | '/careers'
     | '/contact-us'
@@ -187,6 +199,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutUsRoute: typeof AboutUsRoute
   AdmissionsRoute: typeof AdmissionsRoute
+  AffiliationsRoute: typeof AffiliationsRoute
   BlogsRoute: typeof BlogsRoute
   CareersRoute: typeof CareersRoute
   ContactUsRoute: typeof ContactUsRoute
@@ -220,6 +233,13 @@ declare module '@tanstack/react-router' {
       path: '/admissions'
       fullPath: '/admissions'
       preLoaderRoute: typeof AdmissionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/affiliations': {
+      id: '/affiliations'
+      path: '/affiliations'
+      fullPath: '/affiliations'
+      preLoaderRoute: typeof AffiliationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blogs': {
@@ -299,6 +319,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutUsRoute: AboutUsRoute,
   AdmissionsRoute: AdmissionsRoute,
+  AffiliationsRoute: AffiliationsRoute,
   BlogsRoute: BlogsRoute,
   CareersRoute: CareersRoute,
   ContactUsRoute: ContactUsRoute,
