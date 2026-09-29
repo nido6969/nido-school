@@ -3,6 +3,7 @@ export type NavItem = { label: string; to: string };
 export const mainNav: NavItem[] = [
   { label: "Home", to: "/" },
   { label: "About Us", to: "/about-us" },
+  { label: "Affiliations", to: "/affiliations" },
   { label: "Mission & Vision", to: "/mission-vision" },
   { label: "Programs & Environments", to: "/programs-environments" },
   { label: "Blogs", to: "/blogs" },
