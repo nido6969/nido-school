@@ -1,3 +1,4 @@
+import { useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/site/PageShell";
 
@@ -21,6 +22,68 @@ export const Route = createFileRoute("/contact-us")({
 });
 
 function ContactPage() {
+  const [submitted, setSubmitted] = useState(false);
+  const [whatsappLink, setWhatsappLink] = useState("");
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const fullName = String(formData.get("Full Name") || "").trim();
+    const email = String(formData.get("Email") || "").trim();
+    const phone = String(formData.get("Phone Number") || "").trim();
+    const age = String(formData.get("Child's Age") || "").trim();
+    const inquiry = String(formData.get("Inquiry Type") || "").trim();
+    const message = String(formData.get("Your Message") || "").trim();
+
+    const lines = [
+      "Hello NIDO Montessori,",
+      "",
+      "I have submitted an inquiry via your website:",
+      `• Name: ${fullName}`,
+      `• Email: ${email}`,
+      phone ? `• Phone: ${phone}` : null,
+      age ? `• Child's Age: ${age}` : null,
+      inquiry ? `• Inquiry Type: ${inquiry}` : null,
+      "",
+      "• Message:",
+      message,
+    ].filter((item) => item !== null);
+
+    const text = lines.join("\n");
+    const targetUrl = `https://wa.me/919618853888?text=${encodeURIComponent(text)}`;
+
+    // Send backup copy to info@nidomontessori.in asynchronously
+    fetch("https://formsubmit.co/ajax/info@nidomontessori.in", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        "Full Name": fullName,
+        Email: email,
+        "Phone Number": phone || "Not provided",
+        "Child's Age": age || "Not provided",
+        "Inquiry Type": inquiry,
+        "Your Message": message,
+        _subject: "New Inquiry from NIDO Montessori Website",
+      }),
+    }).catch(() => {});
+
+    setWhatsappLink(targetUrl);
+    setSubmitted(true);
+
+    const isMobile =
+      typeof navigator !== "undefined" && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      window.location.href = targetUrl;
+    } else {
+      window.open(targetUrl, "_blank", "noopener,noreferrer");
+    }
+  };
   return (
     <PageShell>
       <h1 className="font-body text-[#636B2F] text-[32px] sm:text-[42px] lg:text-[50px] font-bold">
@@ -43,114 +106,137 @@ function ContactPage() {
           </p>
 
           <div className="mt-5 rounded-2xl bg-[#f7f2e8] p-4 sm:p-6 lg:p-8 border border-[#e8dcc2] shadow-xs">
-            <form
-              id="contactForm"
-              action="https://formsubmit.co/info@nidomontessori.in"
-              method="POST"
-              className="flex flex-col gap-4 font-serif text-base text-[#333]"
-            >
-              <input
-                type="hidden"
-                name="_subject"
-                value="New Inquiry from NIDO Montessori Website"
-              />
-              <input type="hidden" name="_captcha" value="false" />
-              <input
-                type="hidden"
-                name="_next"
-                value="https://nidomontessori.in/whatsapp-redirect.html"
-              />
-
-              <div>
-                <label htmlFor="fullName" className="block font-bold mb-1.5 text-sm sm:text-base">
-                  Full Name *
-                </label>
-                <input
-                  type="text"
-                  id="fullName"
-                  name="Full Name"
-                  required
-                  placeholder="Your full name"
-                  className="w-full h-12 rounded-xl border border-[#ccc] bg-white px-3.5 font-serif text-base focus:outline-none focus:ring-2 focus:ring-[#c4935c]"
-                />
+            {submitted ? (
+              <div className="text-center py-4 space-y-4 font-serif">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#636B2F] text-white text-2xl font-bold shadow-xs">
+                  ✓
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-[#2a2a2a]">
+                  Thank You for Your Inquiry!
+                </h3>
+                <p className="text-base text-[#444] max-w-md mx-auto leading-relaxed">
+                  Your message has been prepared for WhatsApp (<strong>+91 9618853888</strong>). If
+                  WhatsApp did not open automatically, please click below to send:
+                </p>
+                <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <a
+                    href={whatsappLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex w-full sm:w-fit items-center justify-center gap-2 rounded-xl bg-whatsapp px-6 py-3.5 font-display text-base sm:text-lg font-bold text-white shadow-md transition-transform hover:scale-105 active:scale-98 min-h-[48px]"
+                  >
+                    <span>Open in WhatsApp</span>
+                    <span>↗</span>
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSubmitted(false);
+                      setWhatsappLink("");
+                    }}
+                    className="flex w-full sm:w-fit items-center justify-center rounded-xl border border-[#ccc] bg-white px-5 py-3 font-serif text-base text-[#333] hover:bg-[#eee] transition-colors min-h-[48px]"
+                  >
+                    Send another message
+                  </button>
+                </div>
               </div>
-
-              <div>
-                <label htmlFor="email" className="block font-bold mb-1.5 text-sm sm:text-base">
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="Email"
-                  required
-                  placeholder="name@example.com"
-                  className="w-full h-12 rounded-xl border border-[#ccc] bg-white px-3.5 font-serif text-base focus:outline-none focus:ring-2 focus:ring-[#c4935c]"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="phone" className="block font-bold mb-1.5 text-sm sm:text-base">
-                  Phone Number (Optional)
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="Phone Number"
-                  placeholder="+91 87120 34644"
-                  className="w-full h-12 rounded-xl border border-[#ccc] bg-white px-3.5 font-serif text-base focus:outline-none focus:ring-2 focus:ring-[#c4935c]"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="age" className="block font-bold mb-1.5 text-sm sm:text-base">
-                  Child's Age (Optional)
-                </label>
-                <input
-                  type="text"
-                  id="age"
-                  name="Child's Age"
-                  placeholder="e.g. 2 years"
-                  className="w-full h-12 rounded-xl border border-[#ccc] bg-white px-3.5 font-serif text-base focus:outline-none focus:ring-2 focus:ring-[#c4935c]"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="inquiry" className="block font-bold mb-1.5 text-sm sm:text-base">
-                  Inquiry Type
-                </label>
-                <select
-                  id="inquiry"
-                  name="Inquiry Type"
-                  className="w-full h-12 rounded-xl border border-[#ccc] bg-white px-3.5 font-serif text-base focus:outline-none focus:ring-2 focus:ring-[#c4935c]"
-                >
-                  <option>General Question</option>
-                  <option>Tour Request</option>
-                  <option>Admissions Info</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block font-bold mb-1.5 text-sm sm:text-base">
-                  Your Message *
-                </label>
-                <textarea
-                  id="message"
-                  name="Your Message"
-                  rows={4}
-                  required
-                  placeholder="How can we help you?"
-                  className="w-full rounded-xl border border-[#ccc] bg-white p-3.5 font-serif text-base focus:outline-none focus:ring-2 focus:ring-[#c4935c]"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="mt-2 flex w-full sm:w-fit items-center justify-center rounded-xl bg-[#c4935c] px-8 py-3.5 font-serif text-lg font-bold text-white shadow-md transition-transform hover:scale-105 active:scale-98 min-h-[48px]"
+            ) : (
+              <form
+                id="contactForm"
+                onSubmit={handleSubmit}
+                className="flex flex-col gap-4 font-serif text-base text-[#333]"
               >
-                Send Message
-              </button>
-            </form>
+                <div>
+                  <label htmlFor="fullName" className="block font-bold mb-1.5 text-sm sm:text-base">
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="Full Name"
+                    required
+                    placeholder="Your full name"
+                    className="w-full h-12 rounded-xl border border-[#ccc] bg-white px-3.5 font-serif text-base focus:outline-none focus:ring-2 focus:ring-[#c4935c]"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block font-bold mb-1.5 text-sm sm:text-base">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="Email"
+                    required
+                    placeholder="name@example.com"
+                    className="w-full h-12 rounded-xl border border-[#ccc] bg-white px-3.5 font-serif text-base focus:outline-none focus:ring-2 focus:ring-[#c4935c]"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="block font-bold mb-1.5 text-sm sm:text-base">
+                    Phone Number (Optional)
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="Phone Number"
+                    placeholder="+91 87120 34644"
+                    className="w-full h-12 rounded-xl border border-[#ccc] bg-white px-3.5 font-serif text-base focus:outline-none focus:ring-2 focus:ring-[#c4935c]"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="age" className="block font-bold mb-1.5 text-sm sm:text-base">
+                    Child's Age (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    id="age"
+                    name="Child's Age"
+                    placeholder="e.g. 2 years"
+                    className="w-full h-12 rounded-xl border border-[#ccc] bg-white px-3.5 font-serif text-base focus:outline-none focus:ring-2 focus:ring-[#c4935c]"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="inquiry" className="block font-bold mb-1.5 text-sm sm:text-base">
+                    Inquiry Type
+                  </label>
+                  <select
+                    id="inquiry"
+                    name="Inquiry Type"
+                    className="w-full h-12 rounded-xl border border-[#ccc] bg-white px-3.5 font-serif text-base focus:outline-none focus:ring-2 focus:ring-[#c4935c]"
+                  >
+                    <option>General Question</option>
+                    <option>Tour Request</option>
+                    <option>Admissions Info</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block font-bold mb-1.5 text-sm sm:text-base">
+                    Your Message *
+                  </label>
+                  <textarea
+                    id="message"
+                    name="Your Message"
+                    rows={4}
+                    required
+                    placeholder="How can we help you?"
+                    className="w-full rounded-xl border border-[#ccc] bg-white p-3.5 font-serif text-base focus:outline-none focus:ring-2 focus:ring-[#c4935c]"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="mt-2 flex w-full sm:w-fit items-center justify-center gap-2 rounded-xl bg-[#c4935c] px-8 py-3.5 font-serif text-lg font-bold text-white shadow-md transition-transform hover:scale-105 active:scale-98 min-h-[48px]"
+                >
+                  Send Message
+                </button>
+              </form>
+            )}
           </div>
         </div>
 
