@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY . .
-ARG WORDPRESS_URL=https://www.nidomontessori.in/blog
+ARG WORDPRESS_URL=https://nido-14b003d.ingress-bonde.ewp.live
 ARG WORDPRESS_CONTENT_TYPE=posts
 ARG WORDPRESS_EXCLUDE_CATEGORY=research
 ENV WORDPRESS_URL=$WORDPRESS_URL

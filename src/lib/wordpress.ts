@@ -20,7 +20,7 @@ type WpPost = {
 };
 
 /** EasyWP origin. Editors: /blogs/wp-admin on the school site redirects to /wp-admin here. */
-const DEFAULT_WORDPRESS_URL = "https://blognidomontessoriin-14b003d.ingress-earth.ewp.live";
+const DEFAULT_WORDPRESS_URL = "https://nido-14b003d.ingress-bonde.ewp.live";
 
 /** Short TTL so a newly published post appears on /blogs without a git deploy. */
 const CACHE_MS = 15_000;
