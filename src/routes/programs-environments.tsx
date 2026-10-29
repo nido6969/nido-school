@@ -58,8 +58,54 @@ function ProgramsPage() {
         </p>
       </div>
 
+      {/* TRANSITION & SETTLEMENT */}
+      <section className="mt-10 sm:mt-14 max-w-[1100px]">
+        <h2 className="font-body text-[#636B2F] text-[26px] sm:text-[34px] lg:text-[42px] font-bold">
+          Transition &amp; Settlement: A Thoughtful Beginning
+        </h2>
+
+        <div className="mt-4 sm:mt-6 space-y-4 sm:space-y-5 font-serif text-[16px] sm:text-[18px] lg:text-[20px] leading-[1.7] text-[#333]">
+          <p>
+            Starting preschool is a significant transition, not only for the child but for the
+            family as well. At NIDO, we recognise that each child approaches a new environment
+            differently. While some children begin exploring with ease, others need more time to
+            observe, build trust and feel secure in the presence of their guides.
+          </p>
+          <p>
+            Our settlement process is therefore guided by the child’s responses, rather than a
+            predetermined timeline. We begin with the understanding that a sense of security and
+            belonging develops gradually, and that children should be given the time and space they
+            need to become comfortable in their new environment.
+          </p>
+          <p>
+            During this period, one consistent parent or authorised family member accompanies the
+            child on campus, providing a familiar presence while allowing the guides to establish a
+            relationship with the child. Parents are encouraged to remain calm and unobtrusive,
+            giving the child the freedom to approach the environment at their own pace while the
+            guides observe their responses and support their growing participation.
+          </p>
+          <p>
+            The duration of each visit is increased gradually, based on the guides’ observations of
+            the child’s readiness. The transition to longer school hours is not determined by a
+            fixed schedule or by comparing one child’s progress with another’s. Some children may
+            settle sooner, while others may need additional time or periods of renewed support.
+          </p>
+          <p>
+            We work in partnership with families throughout this process, maintaining consistent
+            arrival and departure routines and communicating decisions about changes in timings. Our
+            aim is not simply to help a child become accustomed to attending school, but to support
+            a more secure and confident transition towards independence, meaningful engagement and a
+            sense of belonging within the NIDO community.
+          </p>
+          <p>
+            At NIDO, we believe that a thoughtful beginning lays the foundation for a positive
+            relationship with the school, the guides and the process of learning.
+          </p>
+        </div>
+      </section>
+
       {/* TODDLER COMMUNITY */}
-      <section className="mt-10 sm:mt-14 grid items-start gap-8 lg:grid-cols-[1.3fr_1fr]">
+      <section className="mt-12 sm:mt-16 grid items-start gap-8 lg:grid-cols-[1.3fr_1fr]">
         <div>
           <h2 className="font-body text-[#636B2F] text-[26px] sm:text-[34px] lg:text-[42px] font-bold">
             Toddler Community
@@ -341,6 +387,55 @@ function ProgramsPage() {
               </ul>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* SESSION HOURS, ARRIVAL AND DEPARTURE */}
+      <section className="mt-14 sm:mt-20 max-w-[1100px]">
+        <h2 className="font-body text-[#636B2F] text-[26px] sm:text-[34px] lg:text-[42px] font-bold">
+          Session Hours, Arrival and Departure
+        </h2>
+        <div className="mt-4 sm:mt-6 font-serif text-[16px] sm:text-[18px] lg:text-[20px] leading-[1.7] text-[#333]">
+          <p>
+            The Toddler Environment operates Monday to Friday, from 9:30 am to 11:30 am, while the
+            Primary Environment operates from 9:00 am to 12:00 noon. Children must be handed over to
+            a NIDO team member at the main gate. Pick-up is permitted only through authorised adults
+            recorded with the school. Consistent attendance and punctual arrival and departure help
+            preserve the child’s routine and uninterrupted work.
+          </p>
+        </div>
+      </section>
+
+      {/* MEALS AND SNACKS */}
+      <section className="mt-10 sm:mt-14 max-w-[1100px]">
+        <h2 className="font-body text-[#636B2F] text-[26px] sm:text-[34px] lg:text-[42px] font-bold">
+          Meals and Snacks
+        </h2>
+        <div className="mt-4 sm:mt-6 font-serif text-[16px] sm:text-[18px] lg:text-[20px] leading-[1.7] text-[#333]">
+          <p>
+            At NIDO, children are encouraged to develop independence through food preparation and
+            shared meals. In the Toddler Environment, parents send one whole, uncut seasonal fruit
+            each day for children to wash, cut and prepare together. In the Primary Environment,
+            NIDO provides a seasonal fruit for this activity, while parents also send a small tiffin
+            of suitable food. Children are encouraged to eat independently, and adults do not feed
+            children at NIDO.
+          </p>
+        </div>
+      </section>
+
+      {/* PARENT COMMUNICATION AND MEETINGS */}
+      <section className="mt-10 sm:mt-14 max-w-[1100px]">
+        <h2 className="font-body text-[#636B2F] text-[26px] sm:text-[34px] lg:text-[42px] font-bold">
+          Parent Communication and Meetings
+        </h2>
+        <div className="mt-4 sm:mt-6 font-serif text-[16px] sm:text-[18px] lg:text-[20px] leading-[1.7] text-[#333]">
+          <p>
+            Each child has an individual WhatsApp group that includes the guide, administration
+            representatives and the founder. Parents can use this channel for school-related
+            communication and submit call requests through the designated Google Form. One-to-one
+            Parent–Guide Conferences are held twice a year, alongside workshops and school events.
+            Campus visits require a prior appointment.
+          </p>
         </div>
       </section>
     </PageShell>
