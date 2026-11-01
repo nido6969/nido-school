@@ -41,15 +41,27 @@ export function wordpressAdminUrl(): string {
   return `${wordpressOrigin()}/wp-admin`;
 }
 
-function stripTags(html: string): string {
-  return html
-    .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "")
-    .replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, "")
-    .replace(/<[^>]+>/g, " ")
+function decodeEntities(text: string): string {
+  return text
+    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
     .replace(/&nbsp;/g, " ")
-    .replace(/&#8217;/g, "'")
+    .replace(/&hellip;/g, "...")
     .replace(/&amp;/g, "&")
     .replace(/&quot;/g, '"')
+    .replace(/&ldquo;|&rdquo;/g, '"')
+    .replace(/&lsquo;|&rsquo;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">");
+}
+
+function stripTags(html: string): string {
+  return decodeEntities(
+    html
+      .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "")
+      .replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, "")
+      .replace(/<[^>]+>/g, " "),
+  )
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -79,7 +91,7 @@ function categoryFromPost(post: WpPost): string {
   const groups = post._embedded?.["wp:term"] ?? [];
   for (const group of groups) {
     const named = group.find((term) => term?.name);
-    if (named?.name) return named.name;
+    if (named?.name) return decodeEntities(named.name);
   }
   return "Blog";
 }
