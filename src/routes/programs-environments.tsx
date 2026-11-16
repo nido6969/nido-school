@@ -111,7 +111,7 @@ function ProgramsPage() {
             Toddler Community
           </h2>
           <p className="mt-1.5 font-serif text-[17px] sm:text-[20px] font-bold text-foreground">
-            Toddler Community (Ages 14 months – 2.4/2.6 years)
+            Toddler Community (Ages 14 months – 2.4 years)
           </p>
 
           <div className="mt-5 space-y-6 sm:space-y-8 font-serif text-[15px] sm:text-[18px] leading-[1.7] text-[#333]">
@@ -230,7 +230,7 @@ function ProgramsPage() {
           Primary Classroom
         </h2>
         <p className="mt-1.5 font-serif text-[17px] sm:text-[20px] font-bold text-foreground">
-          Primary Classroom (Ages 2.6 - 6 years)
+          Primary Classroom (Ages 2.2 - 2.4 years)
         </p>
 
         <div className="mt-6 sm:mt-8 grid items-start gap-8 lg:grid-cols-[1fr_1.3fr]">
