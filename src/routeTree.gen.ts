@@ -19,6 +19,7 @@ import { Route as ContactUsRouteImport } from './routes/contact-us'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as MissionVisionRouteImport } from './routes/mission-vision'
 import { Route as ProgramsEnvironmentsRouteImport } from './routes/programs-environments'
+import { Route as VideosRouteImport } from './routes/videos'
 import { Route as BlogWpAdminRouteImport } from './routes/blog_/wp-admin'
 import { Route as BlogsBlogIdRouteImport } from './routes/blogs_/$blogId'
 import { Route as BlogsSlugRouteImport } from './routes/blogs[_].$slug'
@@ -74,6 +75,11 @@ const ProgramsEnvironmentsRoute = ProgramsEnvironmentsRouteImport.update({
   path: '/programs-environments',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VideosRoute = VideosRouteImport.update({
+  id: '/videos',
+  path: '/videos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogWpAdminRoute = BlogWpAdminRouteImport.update({
   id: '/blog_/wp-admin',
   path: '/blog/wp-admin',
@@ -106,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/faqs': typeof FaqsRoute
   '/mission-vision': typeof MissionVisionRoute
   '/programs-environments': typeof ProgramsEnvironmentsRoute
+  '/videos': typeof VideosRoute
   '/blog/wp-admin': typeof BlogWpAdminRoute
   '/blogs/$blogId': typeof BlogsBlogIdRoute
   '/blogs_/$slug': typeof BlogsSlugRoute
@@ -122,6 +129,7 @@ export interface FileRoutesByTo {
   '/faqs': typeof FaqsRoute
   '/mission-vision': typeof MissionVisionRoute
   '/programs-environments': typeof ProgramsEnvironmentsRoute
+  '/videos': typeof VideosRoute
   '/blog/wp-admin': typeof BlogWpAdminRoute
   '/blogs/$blogId': typeof BlogsBlogIdRoute
   '/blogs_/$slug': typeof BlogsSlugRoute
@@ -139,6 +147,7 @@ export interface FileRoutesById {
   '/faqs': typeof FaqsRoute
   '/mission-vision': typeof MissionVisionRoute
   '/programs-environments': typeof ProgramsEnvironmentsRoute
+  '/videos': typeof VideosRoute
   '/blog_/wp-admin': typeof BlogWpAdminRoute
   '/blogs_/$blogId': typeof BlogsBlogIdRoute
   '/blogs_/$slug': typeof BlogsSlugRoute
@@ -157,6 +166,7 @@ export interface FileRouteTypes {
     | '/faqs'
     | '/mission-vision'
     | '/programs-environments'
+    | '/videos'
     | '/blog/wp-admin'
     | '/blogs/$blogId'
     | '/blogs_/$slug'
@@ -173,6 +183,7 @@ export interface FileRouteTypes {
     | '/faqs'
     | '/mission-vision'
     | '/programs-environments'
+    | '/videos'
     | '/blog/wp-admin'
     | '/blogs/$blogId'
     | '/blogs_/$slug'
@@ -189,6 +200,7 @@ export interface FileRouteTypes {
     | '/faqs'
     | '/mission-vision'
     | '/programs-environments'
+    | '/videos'
     | '/blog_/wp-admin'
     | '/blogs_/$blogId'
     | '/blogs_/$slug'
@@ -206,6 +218,7 @@ export interface RootRouteChildren {
   FaqsRoute: typeof FaqsRoute
   MissionVisionRoute: typeof MissionVisionRoute
   ProgramsEnvironmentsRoute: typeof ProgramsEnvironmentsRoute
+  VideosRoute: typeof VideosRoute
   BlogWpAdminRoute: typeof BlogWpAdminRoute
   BlogsBlogIdRoute: typeof BlogsBlogIdRoute
   BlogsSlugRoute: typeof BlogsSlugRoute
@@ -284,6 +297,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgramsEnvironmentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/videos': {
+      id: '/videos'
+      path: '/videos'
+      fullPath: '/videos'
+      preLoaderRoute: typeof VideosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog_/wp-admin': {
       id: '/blog_/wp-admin'
       path: '/blog/wp-admin'
@@ -326,6 +346,7 @@ const rootRouteChildren: RootRouteChildren = {
   FaqsRoute: FaqsRoute,
   MissionVisionRoute: MissionVisionRoute,
   ProgramsEnvironmentsRoute: ProgramsEnvironmentsRoute,
+  VideosRoute: VideosRoute,
   BlogWpAdminRoute: BlogWpAdminRoute,
   BlogsBlogIdRoute: BlogsBlogIdRoute,
   BlogsSlugRoute: BlogsSlugRoute,

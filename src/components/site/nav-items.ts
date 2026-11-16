@@ -7,6 +7,7 @@ export const mainNav: NavItem[] = [
   { label: "Mission & Vision", to: "/mission-vision" },
   { label: "Programs & Environments", to: "/programs-environments" },
   { label: "Blogs", to: "/blogs" },
+  { label: "Videos", to: "/videos" },
   { label: "FAQ's", to: "/faqs" },
   { label: "Admissions", to: "/admissions" },
   { label: "Careers", to: "/careers" },

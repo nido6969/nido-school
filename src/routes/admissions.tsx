@@ -24,8 +24,8 @@ function AdmissionsPage() {
   const steps = [
     {
       num: "1",
-      title: "Submit an application",
-      desc: "Complete our online application form. (application form)",
+      title: "Attend an Orientation Session at NIDO",
+      desc: "Reserve a spot for yourself for the Parent Orientation Session with us to understand the Montessori pedagogy and explore the Montessori perspective.",
       link: {
         text: "Online Application Form",
         url: "https://docs.google.com/forms/d/e/1FAIpQLSfAYIppgWT5WNm0p6splEqJjd9WpC1Q-Tck_5WELaJhsLecfg/viewform",

@@ -52,7 +52,7 @@ function HomePage() {
   return (
     <PageShell>
       {/* HERO SECTION */}
-      <section className="relative mx-auto h-[220px] w-full max-w-[920px] overflow-hidden rounded-2xl sm:h-[300px] sm:rounded-[20px] bg-[#faf4e8] shadow-[0_6px_24px_oklch(0_0_0/0.06)]">
+      <section className="relative mx-auto h-[220px] w-full max-w-[810px] overflow-hidden rounded-2xl sm:h-[300px] sm:rounded-[20px] bg-[#faf4e8] shadow-[0_6px_24px_oklch(0_0_0/0.06)] xl:translate-x-21">
         <img
           src={heroClassroom}
           alt=""

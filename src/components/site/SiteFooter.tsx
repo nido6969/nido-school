@@ -3,7 +3,9 @@ import logo from "@/assets/logo.png";
 import { mainNav } from "./nav-items";
 
 const exploreLinks = mainNav.filter((item) =>
-  ["/", "/about-us", "/mission-vision", "/programs-environments", "/blogs"].includes(item.to),
+  ["/", "/about-us", "/mission-vision", "/programs-environments", "/blogs", "/videos"].includes(
+    item.to,
+  ),
 );
 const familyLinks = mainNav.filter((item) =>
   ["/faqs", "/admissions", "/careers", "/contact-us"].includes(item.to),

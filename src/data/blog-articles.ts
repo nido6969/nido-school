@@ -44,7 +44,7 @@ export const allBlogArticles: BlogArticle[] = [
     title: "The Absorbent Mind: Understanding How Your 0–6-Year-Old Learns at NIDO",
     subtitle: "",
     category: "Child Development",
-    date: "February 2026",
+    date: "September 2025",
     readTime: "4 min read",
     excerpt:
       "The first six years of life are not merely a period of physical growth; they represent a profound phase of psychic self-construction. During this critical window, a child possesses a unique mental faculty that Dr....",
@@ -297,7 +297,7 @@ export const allBlogArticles: BlogArticle[] = [
     title: "What Are the Four Planes of Development in Montessori?",
     subtitle: "A Parent's Guide (0–6 Years Focus",
     category: "Montessori Philosophy",
-    date: "February 2026",
+    date: "October 2025",
     readTime: "5 min read",
     excerpt:
       "Maria Montessori described human development as unfolding in four distinct planes, each representing a unique psychological phase with specific developmental needs. Rather than viewing childhood as a continuous...",
@@ -711,7 +711,7 @@ export const allBlogArticles: BlogArticle[] = [
     title: "Freedom Within Limits",
     subtitle: " Finding the Balance Between Choice and Structure at NIDO",
     category: "Classroom Dynamics",
-    date: "February 2026",
+    date: "November 2025",
     readTime: "4 min read",
     excerpt:
       "In the modern parenting landscape, the debate often swings between two extremes: rigid authoritarianism and total permissiveness. However, at NIDO, we implement a third way—a scientifically backed middle ground known...",
@@ -963,7 +963,7 @@ export const allBlogArticles: BlogArticle[] = [
     title: 'What are the "Sensitive Periods" and How Do They Drive Early Learning?',
     subtitle: "A Research-Backed Parent's Guide for Children Aged 0–6 Years",
     category: "Child Development",
-    date: "February 2026",
+    date: "December 2025",
     readTime: "4 min read",
     excerpt:
       'Early childhood (0–6 years) is a period of extraordinary brain growth, rapid learning, and deep psychological transformation. Maria Montessori described this stage as one in which children pass through "sensitive...',
@@ -1305,7 +1305,7 @@ export const allBlogArticles: BlogArticle[] = [
     title: 'Why "Follow the Child" is the Golden Rule of the Montessori Method',
     subtitle: "",
     category: "Montessori Philosophy",
-    date: "February 2026",
+    date: "January 2026",
     readTime: "4 min read",
     excerpt: "A Research-Backed Parent's Guide for Early Childhood (0–6 Years)",
     metaTitle: 'Why "Follow the Child" is the Golden Rule of the Montessori Method',
@@ -1948,7 +1948,7 @@ export const allBlogArticles: BlogArticle[] = [
     title: "The Spiritual Embryo: Decoding the First Plane of Development at NIDO",
     subtitle: "",
     category: "Infant & Toddler Development",
-    date: "February 2026",
+    date: "March 2026",
     readTime: "4 min read",
     excerpt:
       "In the foundational philosophy of NIDO, we view the child not as a passive recipient of information, but as a dynamic entity undergoing a second birth. Dr. Maria Montessori introduced the profound concept of the...",
@@ -2193,7 +2193,7 @@ export const allBlogArticles: BlogArticle[] = [
     subtitle:
       "A Montessori Perspective on Structure, Security, and Early Brain Development (0–6 Years",
     category: "Classroom Dynamics",
-    date: "February 2026",
+    date: "April 2026",
     readTime: "5 min read",
     excerpt:
       "Order is not merely an aesthetic preference in early childhood — it is a developmental necessity. Within the Montessori framework, order plays a foundational role in how young children understand their world, build...",
@@ -2514,7 +2514,7 @@ export const allBlogArticles: BlogArticle[] = [
     subtitle:
       "A Montessori Perspective on Mastery, Brain Development, and Deep Learning in Early Childhood (0–6 Years",
     category: "Learning Science",
-    date: "February 2026",
+    date: "May 2026",
     readTime: "4 min read",
     excerpt:
       "Young children often repeat activities many times — pouring water again and again, stacking blocks repeatedly, or practicing a movement with deep concentration. To adults, this may appear redundant; however, within...",
@@ -2827,7 +2827,7 @@ export const allBlogArticles: BlogArticle[] = [
     title: "Debunking 7 Common Myths About the Montessori Method",
     subtitle: "",
     category: "Parenting Guides",
-    date: "February 2026",
+    date: "June 2026",
     readTime: "6 min read",
     excerpt: "A Research-Backed Perspective on Early Childhood Education (0–6 Years)",
     metaTitle: "Debunking 7 Common Myths About the Montessori Method",
