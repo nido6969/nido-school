@@ -104,133 +104,13 @@ function ProgramsPage() {
         </div>
       </section>
 
-      {/* TODDLER COMMUNITY */}
-      <section className="mt-12 sm:mt-16 grid items-start gap-8 lg:grid-cols-[1.3fr_1fr]">
-        <div>
-          <h2 className="font-body text-[#636B2F] text-[26px] sm:text-[34px] lg:text-[42px] font-bold">
-            Toddler Community
-          </h2>
-          <p className="mt-1.5 font-serif text-[17px] sm:text-[20px] font-bold text-foreground">
-            Toddler Community (Ages 14 months – 2.4 years)
-          </p>
-
-          <div className="mt-5 space-y-6 sm:space-y-8 font-serif text-[15px] sm:text-[18px] leading-[1.7] text-[#333]">
-            <div>
-              <p>
-                <strong className="font-bold text-[17px] sm:text-[19px]">
-                  1. Physical &amp; Coordination Development:
-                </strong>{" "}
-                These activities build strength, dexterity, and purposeful movement.
-              </p>
-              <ul className="mt-2 list-disc space-y-2 pl-5 sm:pl-6">
-                <li>
-                  <strong className="font-bold">Movement &amp; Motor Skills:</strong> Enhancing both
-                  Gross Motor Skills (like walking, running, and climbing) and Fine Motor Skills
-                  (such as grasping, manipulating objects, and developing the pincer grip).
-                </li>
-                <li>
-                  <strong className="font-bold">Precision &amp; Control:</strong> Developing
-                  Eye-Hand Coordination through tasks like stacking, pouring, and fitting shapes.
-                </li>
-                <li>
-                  <strong className="font-bold">Freedom of Movement:</strong> Fostering the
-                  Development of Natural Movement by providing opportunities for exploration and
-                  practice in a safe environment.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <p>
-                <strong className="font-bold text-[17px] sm:text-[19px]">
-                  2. Cognitive &amp; Sensorial Learning:
-                </strong>{" "}
-                Focusing on the ways children explore the world, concentrate, and make choices.
-              </p>
-              <ul className="mt-2 list-disc space-y-2 pl-5 sm:pl-6">
-                <li>
-                  <strong className="font-bold">Sensorial Exploration:</strong> Engaging the five
-                  senses with hands-on activities that encourage curiosity and a deeper
-                  understanding of the environment (e.g., textures, sounds, and smells).
-                </li>
-                <li>
-                  <strong className="font-bold">Focus &amp; Attention:</strong> Building
-                  Concentration skills through sustained, self-directed work on engaging activities.
-                </li>
-                <li>
-                  <strong className="font-bold">Empowered Decision Making:</strong> Practicing early
-                  Decision Making by offering meaningful choices and respecting the child's
-                  autonomy, which builds confidence and independence.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <p>
-                <strong className="font-bold text-[17px] sm:text-[19px]">
-                  3. Language, Social &amp; Creative Growth:
-                </strong>{" "}
-                Cultivating communication, emotional intelligence, and self-expression.
-              </p>
-              <ul className="mt-2 list-disc space-y-2 pl-5 sm:pl-6">
-                <li>
-                  <strong className="font-bold">Communication &amp; Literacy:</strong> Strengthening
-                  Language Development through rich vocabulary, conversation, and Story Telling.
-                </li>
-                <li>
-                  <strong className="font-bold">Social-Emotional Learning (SEL):</strong> Developing
-                  Social and Emotional Learning skills, including empathy, self-regulation, sharing,
-                  and understanding group dynamics.
-                </li>
-                <li>
-                  <strong className="font-bold">Creative Expression:</strong> Introducing
-                  foundational experiences in Art (e.g., coloring, painting) and Music (e.g.,
-                  singing, movement, simple instruments).
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <p>
-                <strong className="font-bold text-[17px] sm:text-[19px]">
-                  4. Practical Life &amp; Independence:
-                </strong>{" "}
-                Skills that build independence and routine.
-              </p>
-              <ul className="mt-2 list-disc space-y-2 pl-5 sm:pl-6">
-                <li>
-                  <strong className="font-bold">Practical Independence:</strong> Supporting the
-                  journey toward self-sufficiency with Toilet Training and other practical life
-                  skills like dressing, washing hands, and preparing simple snacks.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* TODDLER IMAGES COLUMN */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-3 sm:gap-4 mt-4 lg:mt-0">
-          {toddlerImages.map((img, idx) => (
-            <img
-              key={idx}
-              src={img}
-              alt={`Toddler Community ${idx + 1}`}
-              width={260}
-              height={370}
-              loading="lazy"
-              className="w-full h-[160px] sm:h-[220px] lg:h-[260px] rounded-xl object-cover shadow-sm"
-            />
-          ))}
-        </div>
-      </section>
-
       {/* PRIMARY CLASSROOM */}
-      <section className="mt-14 sm:mt-20">
+      <section className="mt-12 sm:mt-16">
         <h2 className="font-body text-[#636B2F] text-[26px] sm:text-[34px] lg:text-[42px] font-bold">
           Primary Classroom
         </h2>
         <p className="mt-1.5 font-serif text-[17px] sm:text-[20px] font-bold text-foreground">
-          Primary Classroom (Ages 2.2 - 2.4 years)
+          Primary Classroom (Ages 2.2 - 6.5 years)
         </p>
 
         <div className="mt-6 sm:mt-8 grid items-start gap-8 lg:grid-cols-[1fr_1.3fr]">
@@ -387,6 +267,126 @@ function ProgramsPage() {
               </ul>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* TODDLER COMMUNITY */}
+      <section className="mt-14 sm:mt-20 grid items-start gap-8 lg:grid-cols-[1.3fr_1fr]">
+        <div>
+          <h2 className="font-body text-[#636B2F] text-[26px] sm:text-[34px] lg:text-[42px] font-bold">
+            Toddler Community
+          </h2>
+          <p className="mt-1.5 font-serif text-[17px] sm:text-[20px] font-bold text-foreground">
+            Toddler Community (Ages 14 months – 2.4 years)
+          </p>
+
+          <div className="mt-5 space-y-6 sm:space-y-8 font-serif text-[15px] sm:text-[18px] leading-[1.7] text-[#333]">
+            <div>
+              <p>
+                <strong className="font-bold text-[17px] sm:text-[19px]">
+                  1. Physical &amp; Coordination Development:
+                </strong>{" "}
+                These activities build strength, dexterity, and purposeful movement.
+              </p>
+              <ul className="mt-2 list-disc space-y-2 pl-5 sm:pl-6">
+                <li>
+                  <strong className="font-bold">Movement &amp; Motor Skills:</strong> Enhancing both
+                  Gross Motor Skills (like walking, running, and climbing) and Fine Motor Skills
+                  (such as grasping, manipulating objects, and developing the pincer grip).
+                </li>
+                <li>
+                  <strong className="font-bold">Precision &amp; Control:</strong> Developing
+                  Eye-Hand Coordination through tasks like stacking, pouring, and fitting shapes.
+                </li>
+                <li>
+                  <strong className="font-bold">Freedom of Movement:</strong> Fostering the
+                  Development of Natural Movement by providing opportunities for exploration and
+                  practice in a safe environment.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p>
+                <strong className="font-bold text-[17px] sm:text-[19px]">
+                  2. Cognitive &amp; Sensorial Learning:
+                </strong>{" "}
+                Focusing on the ways children explore the world, concentrate, and make choices.
+              </p>
+              <ul className="mt-2 list-disc space-y-2 pl-5 sm:pl-6">
+                <li>
+                  <strong className="font-bold">Sensorial Exploration:</strong> Engaging the five
+                  senses with hands-on activities that encourage curiosity and a deeper
+                  understanding of the environment (e.g., textures, sounds, and smells).
+                </li>
+                <li>
+                  <strong className="font-bold">Focus &amp; Attention:</strong> Building
+                  Concentration skills through sustained, self-directed work on engaging activities.
+                </li>
+                <li>
+                  <strong className="font-bold">Empowered Decision Making:</strong> Practicing early
+                  Decision Making by offering meaningful choices and respecting the child's
+                  autonomy, which builds confidence and independence.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p>
+                <strong className="font-bold text-[17px] sm:text-[19px]">
+                  3. Language, Social &amp; Creative Growth:
+                </strong>{" "}
+                Cultivating communication, emotional intelligence, and self-expression.
+              </p>
+              <ul className="mt-2 list-disc space-y-2 pl-5 sm:pl-6">
+                <li>
+                  <strong className="font-bold">Communication &amp; Literacy:</strong> Strengthening
+                  Language Development through rich vocabulary, conversation, and Story Telling.
+                </li>
+                <li>
+                  <strong className="font-bold">Social-Emotional Learning (SEL):</strong> Developing
+                  Social and Emotional Learning skills, including empathy, self-regulation, sharing,
+                  and understanding group dynamics.
+                </li>
+                <li>
+                  <strong className="font-bold">Creative Expression:</strong> Introducing
+                  foundational experiences in Art (e.g., coloring, painting) and Music (e.g.,
+                  singing, movement, simple instruments).
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p>
+                <strong className="font-bold text-[17px] sm:text-[19px]">
+                  4. Practical Life &amp; Independence:
+                </strong>{" "}
+                Skills that build independence and routine.
+              </p>
+              <ul className="mt-2 list-disc space-y-2 pl-5 sm:pl-6">
+                <li>
+                  <strong className="font-bold">Practical Independence:</strong> Supporting the
+                  journey toward self-sufficiency with Toilet Training and other practical life
+                  skills like dressing, washing hands, and preparing simple snacks.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* TODDLER IMAGES COLUMN */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-3 sm:gap-4 mt-4 lg:mt-0">
+          {toddlerImages.map((img, idx) => (
+            <img
+              key={idx}
+              src={img}
+              alt={`Toddler Community ${idx + 1}`}
+              width={260}
+              height={370}
+              loading="lazy"
+              className="w-full h-[160px] sm:h-[220px] lg:h-[260px] rounded-xl object-cover shadow-sm"
+            />
+          ))}
         </div>
       </section>
 
